@@ -32,11 +32,12 @@ explore: keyword_device_stats {
     type: left_outer
     sql_on: ${keyword_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
-#   join: keyword_floodlight_and_device_stats {
-#     relationship: one_to_one
-#     type: left_outer
-#     sql_on: ${keyword_device_stats.keyword_id} = ${keyword_floodlight_and_device_stats.keyword_id} AND ${keyword_device_stats.visit_date} = ${keyword_floodlight_and_device_stats.visit_date}  ;;
-#   }
+   join: keyword_floodlight_and_device_stats {
+     relationship: one_to_one
+     type: left_outer
+     sql_on: ${keyword_device_stats.keyword_id} = ${keyword_floodlight_and_device_stats.keyword_id} ;;
+    # AND ${keyword_device_stats.visit_date} = ${keyword_floodlight_and_device_stats.visit_date}
+   }
 }
 
 explore: floodlight_activity {
