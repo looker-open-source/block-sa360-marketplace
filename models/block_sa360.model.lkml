@@ -11,7 +11,7 @@ datagroup: block_sa360_default_datagroup {
 persist_with: block_sa360_default_datagroup
 
 explore: keyword_device_stats {
-  label: "(1) Search Data"
+  label: "(1) Cost, Clicks, Imps 🔍 "
   join: keyword {
     relationship: many_to_one
     type: left_outer
@@ -34,8 +34,18 @@ explore: keyword_device_stats {
   }
 }
 
-explore: visit {
-  label: "(2) Visit Data"
+explore: floodlight_activity {
+  label: "(2) Floodlight Data 🔦"
+  description: "this is interesting but doesn't connect with any action because the ID/Group ID in the keyword_floodlight_and_device_stats is not populated"
+}
+
+explore: keyword_floodlight_and_device_stats {
+  label: "(3) Revenue, Transactions, Actions"
+  join: keyword {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_floodlight_and_device_stats.keyword_id} = ${keyword.keyword_id} ;;
+  }
 }
 
 ###UNUSED EXPLORES

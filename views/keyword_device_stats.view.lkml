@@ -3,6 +3,7 @@ view: keyword_device_stats {
     ;;
 
   dimension_group: _data {
+  hidden:  yes
     type: time
     timeframes: [
       raw,
@@ -18,6 +19,7 @@ view: keyword_device_stats {
   }
 
   dimension_group: _latest {
+    hidden:  yes
     type: time
     timeframes: [
       raw,
@@ -93,11 +95,13 @@ view: keyword_device_stats {
   }
 
   dimension: clicks {
+    hidden:  yes
     type: number
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: cost {
+    hidden:  yes
     type: number
     sql: ${TABLE}.cost ;;
   }
@@ -107,7 +111,8 @@ view: keyword_device_stats {
     sql: ${TABLE}.ctr ;;
   }
 
-  dimension_group: date {
+  dimension_group: visit {
+    description: "I believe this is the visit date????"
     type: time
     timeframes: [
       raw,
@@ -133,6 +138,7 @@ view: keyword_device_stats {
   }
 
   dimension: impr {
+    hidden:  yes
     type: number
     sql: ${TABLE}.impr ;;
   }
@@ -148,12 +154,35 @@ view: keyword_device_stats {
   }
 
   dimension: visits {
+    hidden:  yes
     type: number
     sql: ${TABLE}.visits ;;
   }
 
+  ### MEASURES
+
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: total_impressions {
+    type: sum
+    sql: ${impr} ;;
+  }
+
+  measure: total_clicks {
+    type: sum
+    sql: ${clicks} ;;
+  }
+
+  measure: total_visits {
+    type: sum
+    sql: ${visits} ;;
+  }
+
+  measure: total_cost {
+    type: sum
+    sql: ${cost} ;;
   }
 }

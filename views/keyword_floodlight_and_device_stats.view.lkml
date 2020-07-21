@@ -3,6 +3,7 @@ view: keyword_floodlight_and_device_stats {
     ;;
 
   dimension_group: _data {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -18,6 +19,7 @@ view: keyword_floodlight_and_device_stats {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -62,7 +64,8 @@ view: keyword_floodlight_and_device_stats {
     sql: ${TABLE}.campaignId ;;
   }
 
-  dimension_group: date {
+  dimension_group: visit {
+    description: "I believe this is visit????"
     type: time
     timeframes: [
       raw,
@@ -83,21 +86,25 @@ view: keyword_floodlight_and_device_stats {
   }
 
   dimension: dfa_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaActions ;;
   }
 
   dimension: dfa_revenue {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaRevenue ;;
   }
 
   dimension: dfa_transactions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaTransactions ;;
   }
 
   dimension: dfa_weighted_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaWeightedActions ;;
   }
@@ -130,5 +137,26 @@ view: keyword_floodlight_and_device_stats {
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: total_actions {
+    type: sum
+    sql: ${dfa_actions} ;;
+  }
+
+  measure: total_weighted_actions {
+    type: sum
+    sql: ${dfa_weighted_actions} ;;
+  }
+
+  measure: total_revenue {
+    type: sum
+    value_format_name: usd
+    sql: ${dfa_revenue} ;;
+  }
+
+  measure: total_transactions {
+    type: sum
+    sql: ${dfa_transactions} ;;
   }
 }
