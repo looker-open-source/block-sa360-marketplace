@@ -10,208 +10,128 @@ datagroup: block_sa360_default_datagroup {
 
 persist_with: block_sa360_default_datagroup
 
-explore: account_21700000000010391 {}
-
-explore: account_device_stats_21700000000010391 {}
-
-explore: account_floodlight_and_device_stats_21700000000010391 {}
-
-explore: account_stats_21700000000010391 {}
-
-explore: ad_21700000000010391 {}
-
-explore: ad_device_stats_21700000000010391 {}
-
-explore: ad_floodlight_and_device_stats_21700000000010391 {}
-
-explore: ad_group_21700000000010391 {}
-
-explore: ad_group_device_stats_21700000000010391 {}
-
-explore: ad_group_feed_item_stats_21700000000010391 {}
-
-explore: ad_group_floodlight_and_device_stats_21700000000010391 {}
-
-explore: ad_group_floodlight_and_feed_item_stats_21700000000010391 {}
-
-explore: ad_group_stats_21700000000010391 {}
-
-explore: ad_group_target_21700000000010391 {}
-
-explore: ad_group_target_device_stats_21700000000010391 {}
-
-explore: ad_group_target_floodlight_and_device_stats_21700000000010391 {}
-
-explore: advertiser_21700000000010391 {}
-
-explore: advertiser_device_stats_21700000000010391 {}
-
-explore: advertiser_floodlight_and_device_stats_21700000000010391 {}
-
-explore: advertiser_stats_21700000000010391 {}
-
-explore: bid_strategy_21700000000010391 {}
-
-explore: bid_strategy_stats_21700000000010391 {}
-
-explore: campaign_21700000000010391 {}
-
-explore: campaign_device_stats_21700000000010391 {}
-
-explore: campaign_feed_item_stats_21700000000010391 {}
-
-explore: campaign_floodlight_and_device_stats_21700000000010391 {}
-
-explore: campaign_floodlight_and_feed_item_stats_21700000000010391 {}
-
-explore: campaign_floodtlight_and_device_stats_21700000000010391 {}
-
-explore: campaign_stats_21700000000010391 {}
-
-explore: campaign_target_21700000000010391 {}
-
-explore: campaign_target_device_stats_21700000000010391 {}
-
-explore: campaign_target_floodlight_and_device_stats_21700000000010391 {}
-
-explore: feed_item_21700000000010391 {}
-
-explore: feed_item_floodlight_stats_21700000000010391 {}
-
-explore: feed_item_stats_21700000000010391 {}
-
-explore: floodlight_activity_21700000000010391 {}
-
-explore: keyword_21700000000010391 {}
-
-explore: keyword_device_stats_21700000000010391 {}
-
-explore: keyword_floodlight_and_device_stats_21700000000010391 {}
-
-explore: keyword_stats_21700000000010391 {}
-
-explore: negative_ad_group_keyword_21700000000010391 {}
-
-explore: negative_ad_group_target_21700000000010391 {}
-
-explore: negative_campaign_keyword_21700000000010391 {}
-
-explore: negative_campaign_target_21700000000010391 {}
-
-explore: p_account_21700000000010391 {}
-
-explore: p_account_device_stats_21700000000010391 {}
-
-explore: p_account_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_account_stats_21700000000010391 {}
-
-explore: p_ad_21700000000010391 {}
-
-explore: p_ad_device_stats_21700000000010391 {}
-
-explore: p_ad_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_ad_group_21700000000010391 {}
-
-explore: p_ad_group_device_stats_21700000000010391 {}
-
-explore: p_ad_group_feed_item_stats_21700000000010391 {}
-
-explore: p_ad_group_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_ad_group_floodlight_and_feed_item_stats_21700000000010391 {}
-
-explore: p_ad_group_stats_21700000000010391 {}
-
-explore: p_ad_group_target_21700000000010391 {}
-
-explore: p_ad_group_target_device_stats_21700000000010391 {}
-
-explore: p_ad_group_target_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_advertiser_21700000000010391 {}
-
-explore: p_advertiser_device_stats_21700000000010391 {}
-
-explore: p_advertiser_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_advertiser_stats_21700000000010391 {}
-
-explore: p_bid_strategy_21700000000010391 {}
-
-explore: p_bid_strategy_stats_21700000000010391 {}
-
-explore: p_campaign_21700000000010391 {}
-
-explore: p_campaign_device_stats_21700000000010391 {}
-
-explore: p_campaign_feed_item_stats_21700000000010391 {}
-
-explore: p_campaign_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_campaign_floodlight_and_feed_item_stats_21700000000010391 {}
-
-explore: p_campaign_floodtlight_and_device_stats_21700000000010391 {}
-
-explore: p_campaign_stats_21700000000010391 {}
-
-explore: p_campaign_target_21700000000010391 {}
-
-explore: p_campaign_target_device_stats_21700000000010391 {}
-
-explore: p_campaign_target_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_conversion_21700000000010391 {}
-
-explore: p_feed_item_21700000000010391 {}
-
-explore: p_feed_item_floodlight_stats_21700000000010391 {}
-
-explore: p_feed_item_stats_21700000000010391 {}
-
-explore: p_floodlight_activity_21700000000010391 {}
-
-explore: p_keyword_21700000000010391 {}
-
-explore: p_keyword_device_stats_21700000000010391 {}
-
-explore: p_keyword_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_keyword_stats_21700000000010391 {}
-
-explore: p_negative_ad_group_keyword_21700000000010391 {}
-
-explore: p_negative_ad_group_target_21700000000010391 {}
-
-explore: p_negative_campaign_keyword_21700000000010391 {}
-
-explore: p_negative_campaign_target_21700000000010391 {}
-
-explore: p_product_advertised_21700000000010391 {}
-
-explore: p_product_advertised_device_stats_21700000000010391 {}
-
-explore: p_product_advertised_floodlight_and_device_stats_21700000000010391 {}
-
-explore: p_product_group_21700000000010391 {}
-
-explore: p_product_group_stats_21700000000010391 {}
-
-explore: p_product_lead_and_cross_sell_floodlight_stats_21700000000010391 {}
-
-explore: p_visit_21700000000010391 {}
-
-explore: product_advertised_21700000000010391 {}
-
-explore: product_advertised_device_stats_21700000000010391 {}
-
-explore: product_advertised_floodlight_and_device_stats_21700000000010391 {}
-
-explore: product_group_21700000000010391 {}
-
-explore: product_group_stats_21700000000010391 {}
-
-explore: product_lead_and_cross_sell_floodlight_stats_21700000000010391 {}
-
-explore: visit_21700000000010391 {}
+explore: keyword_device_stats {
+  label: "(1) Search Data"
+  join: keyword {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_device_stats.keyword_id} = ${keyword.keyword_id} ;;
+  }
+  join: ad_group {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_device_stats.ad_group_id} = ${ad_group.ad_group_id} ;;
+  }
+  join: campaign {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_device_stats.campaign_id} = ${campaign.campaign_id} ;;
+  }
+  join: advertiser {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
+}
+
+explore: visit {
+  label: "(2) Visit Data"
+}
+
+# explore: account {}
+#
+# explore: account_device_stats {}
+#
+# explore: account_floodlight_and_device_stats {}
+#
+# explore: account_stats {}
+#
+# explore: ad {}
+#
+# explore: ad_device_stats {}
+#
+# explore: ad_floodlight_and_device_stats {}
+#
+# explore: ad_group {}
+#
+# explore: ad_group_device_stats {}
+#
+# explore: ad_group_feed_item_stats {}
+#
+# explore: ad_group_floodlight_and_device_stats {}
+#
+# explore: ad_group_floodlight_and_feed_item_stats {}
+#
+# explore: ad_group_stats {}
+#
+# explore: ad_group_target {}
+#
+# explore: ad_group_target_device_stats {}
+#
+# explore: ad_group_target_floodlight_and_device_stats {}
+#
+# explore: advertiser {}
+#
+# explore: advertiser_device_stats {}
+#
+# explore: advertiser_floodlight_and_device_stats {}
+#
+# explore: advertiser_stats {}
+#
+# explore: bid_strategy {}
+#
+# explore: bid_strategy_stats {}
+#
+# explore: campaign {}
+#
+# explore: campaign_device_stats {}
+#
+# explore: campaign_feed_item_stats {}
+#
+# explore: campaign_floodlight_and_device_stats {}
+#
+# explore: campaign_floodlight_and_feed_item_stats {}
+#
+# explore: campaign_floodtlight_and_device_stats {}
+#
+# explore: campaign_stats {}
+#
+# explore: campaign_target {}
+#
+# explore: campaign_target_device_stats {}
+#
+# explore: campaign_target_floodlight_and_device_stats {}
+#
+# explore: feed_item {}
+#
+# explore: feed_item_floodlight_stats {}
+#
+# explore: feed_item_stats {}
+#
+# explore: floodlight_activity {}
+#
+# explore: keyword {}
+#
+# explore: keyword_floodlight_and_device_stats {}
+#
+# explore: keyword_stats {}
+#
+# explore: negative_ad_group_keyword {}
+#
+# explore: negative_ad_group_target {}
+#
+# explore: negative_campaign_keyword {}
+#
+# explore: negative_campaign_target {}
+#
+# explore: product_advertised {}
+#
+# explore: product_advertised_device_stats {}
+#
+# explore: product_advertised_floodlight_and_device_stats {}
+#
+# explore: product_group {}
+#
+# explore: product_group_stats {}
+#
+# explore: product_lead_and_cross_sell_floodlight_stats {}
