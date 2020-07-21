@@ -159,4 +159,9 @@ view: keyword_floodlight_and_device_stats {
     type: sum
     sql: ${dfa_transactions} ;;
   }
+
+#   measure: roas {
+#     type: number
+#     sql: ${total_revenue}/${keyword_device_stats.total_cost} ;;
+#   }
 }

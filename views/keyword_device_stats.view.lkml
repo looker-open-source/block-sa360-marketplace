@@ -183,6 +183,13 @@ view: keyword_device_stats {
 
   measure: total_cost {
     type: sum
+    value_format_name: usd
     sql: ${cost} ;;
+  }
+
+  measure: click_through_rate {
+    type: number
+    value_format_name: percent_4
+    sql: (${total_clicks}/${total_impressions})/100;;
   }
 }
