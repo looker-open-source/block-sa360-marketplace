@@ -136,4 +136,9 @@ explore: keyword_events {
     type: left_outer
     sql_on: ${keyword_events.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
+  join: floodlight_activity {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_conversion_events.floodlight_activity_id} = ${floodlight_activity.floodlight_activity_id} ;;
+  }
 }

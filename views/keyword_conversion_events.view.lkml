@@ -3,10 +3,10 @@ view: keyword_conversion_events {
     ;;
 
   dimension_group: _data {
-    hidden: yes
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
@@ -14,7 +14,7 @@ view: keyword_conversion_events {
       year
     ]
     convert_tz: no
-    datatype: date
+#     datatype: datetime
     sql: ${TABLE}._DATA_DATE ;;
   }
 
@@ -71,6 +71,7 @@ view: keyword_conversion_events {
   }
 
   dimension_group: visit {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -122,11 +123,13 @@ view: keyword_conversion_events {
   }
 
   dimension: floodlight_activity_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.floodlightActivityId ;;
   }
 
   dimension: floodlight_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.floodlightGroupId ;;
   }
@@ -149,7 +152,7 @@ view: keyword_conversion_events {
     hidden: yes
     sql:
     CASE
-      WHEN ${_data_date} BETWEEN {% parameter period_1_begin %} AND {% parameter period_1_end %}
+      WHEN ${_data_time} BETWEEN {% parameter period_1_begin %} AND {% parameter period_1_end %}
       THEN 1
       ELSE 0
     END
@@ -158,11 +161,11 @@ view: keyword_conversion_events {
 
   parameter: period_1_begin {
     description: "Use with the Period Reporting Metrics"
-    type: date_time
+    type: date
   }
 
   parameter: period_1_end {
-    type: date_time
+    type: date
   }
 
   dimension: is_period_2 {
@@ -177,11 +180,11 @@ view: keyword_conversion_events {
   }
 
   parameter: period_2_begin {
-    type: date_time
+    type: date
   }
 
   parameter: period_2_end {
-    type: date_time
+    type: date
   }
 
   measure: total_actions_p1 {

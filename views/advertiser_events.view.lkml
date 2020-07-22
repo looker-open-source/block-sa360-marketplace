@@ -18,6 +18,7 @@ view: advertiser_events {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -48,46 +49,55 @@ view: advertiser_events {
   }
 
   dimension: advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.advertiserId ;;
   }
 
   dimension: agency_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.agencyId ;;
   }
 
   dimension: avg_cpc {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgCpc ;;
   }
 
   dimension: avg_cpm {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgCpm ;;
   }
 
   dimension: avg_pos {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgPos ;;
   }
 
   dimension: clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost ;;
   }
 
   dimension: ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.ctr ;;
   }
 
   dimension_group: date {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -103,26 +113,31 @@ view: advertiser_events {
   }
 
   dimension: device_segment {
+    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
 
   dimension: dfa_advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.dfaAdvertiserId ;;
   }
 
   dimension: dfa_network_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.dfaNetworkId ;;
   }
 
   dimension: impr {
+    hidden: yes
     type: number
     sql: ${TABLE}.impr ;;
   }
 
   dimension: visits {
+    hidden: yes
     type: number
     sql: ${TABLE}.visits ;;
   }

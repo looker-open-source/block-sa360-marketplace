@@ -1,4 +1,5 @@
 view: ad_group_conversion_events {
+  view_label: "Ad Group Events"
   sql_table_name: `SA360.AdGroupFloodlightAndDeviceStats_21700000000010391`
     ;;
 
@@ -18,6 +19,7 @@ view: ad_group_conversion_events {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -69,6 +71,7 @@ view: ad_group_conversion_events {
   }
 
   dimension_group: date {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -90,21 +93,25 @@ view: ad_group_conversion_events {
   }
 
   dimension: dfa_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaActions ;;
   }
 
   dimension: dfa_revenue {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaRevenue ;;
   }
 
   dimension: dfa_transactions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaTransactions ;;
   }
 
   dimension: dfa_weighted_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaWeightedActions ;;
   }
