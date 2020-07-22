@@ -18,6 +18,7 @@ view: campaign {
   }
 
   dimension_group: _latest {
+    hidden:  yes
     type: time
     timeframes: [
       raw,
@@ -97,6 +98,7 @@ view: campaign {
   }
 
   dimension: campaign_engine_id {
+    description: "ID of the campaign in the external engine account."
     type: string
     sql: ${TABLE}.campaignEngineId ;;
   }
@@ -143,16 +145,18 @@ view: campaign {
   }
 
   dimension: city_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.cityTargets ;;
   }
 
   dimension: country_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.countryTargets ;;
   }
 
-  dimension_group: creation_timestamp {
+  dimension_group: creation {
     type: time
     timeframes: [
       raw,
@@ -167,6 +171,7 @@ view: campaign {
   }
 
   dimension: daily_budget {
+    value_format_name: usd
     type: number
     sql: ${TABLE}.dailyBudget ;;
   }
@@ -223,6 +228,7 @@ view: campaign {
   }
 
   dimension: engine_status {
+    description: "Additional status of the campaign in the external engine account."
     type: string
     sql: ${TABLE}.engineStatus ;;
   }
@@ -251,9 +257,9 @@ view: campaign {
     sql: ${TABLE}.excludedProvinceTargets ;;
   }
 
-  dimension: keyword_near_match_enabled {
-    type: string
-    sql: ${TABLE}.keywordNearMatchEnabled ;;
+  dimension: is_keyword_near_match_enabled {
+    type: yesno
+    sql: CASE WHEN ${TABLE}.keywordNearMatchEnabled = 'Enabled' THEN TRUE ELSE FALSE END;;
   }
 
   dimension: language_targets {
@@ -262,7 +268,7 @@ view: campaign {
     sql: ${TABLE}.languageTargets ;;
   }
 
-  dimension_group: last_modified_timestamp {
+  dimension_group: last_modified {
     type: time
     timeframes: [
       raw,
@@ -284,6 +290,7 @@ view: campaign {
 
   dimension: monthly_budget {
     type: number
+    value_format_name: usd
     sql: ${TABLE}.monthlyBudget ;;
   }
 

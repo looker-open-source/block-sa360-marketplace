@@ -18,6 +18,7 @@ view: keyword {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -58,11 +59,13 @@ view: keyword {
   }
 
   dimension: bing_keyword_param2 {
+    hidden: yes
     type: string
     sql: ${TABLE}.bingKeywordParam2 ;;
   }
 
   dimension: bing_keyword_param3 {
+    hidden: yes
     type: string
     sql: ${TABLE}.bingKeywordParam3 ;;
   }
@@ -72,7 +75,7 @@ view: keyword {
     sql: ${TABLE}.campaignId ;;
   }
 
-  dimension_group: creation_timestamp {
+  dimension_group: creation {
     type: time
     timeframes: [
       raw,
@@ -92,6 +95,7 @@ view: keyword {
   }
 
   dimension: effective_keyword_max_cpc {
+    description: "Overrides the ad group's max CPC and sets a maximum amount you are willing to pay if someone clicks an ad for this specific keyword. If this field is empty, the keyword will use the ad group's max CPC."
     type: number
     sql: ${TABLE}.effectiveKeywordMaxCpc ;;
   }
@@ -107,11 +111,13 @@ view: keyword {
   }
 
   dimension: is_display_keyword {
+    description: "Indicates whether this is a placeholder keyword that is used for display and placement reporting."
     type: yesno
     sql: ${TABLE}.isDisplayKeyword ;;
   }
 
   dimension: keyword_clickserver_url {
+    hidden: yes
     type: string
     sql: ${TABLE}.keywordClickserverUrl ;;
   }
@@ -134,6 +140,8 @@ view: keyword {
   dimension: keyword_landing_page {
     type: string
     sql: ${TABLE}.keywordLandingPage ;;
+    html: <a href="{{ value }}"><button>Keyword Landing Page</button></a>
+    ;;
   }
 
   dimension: keyword_match_type {
@@ -142,17 +150,20 @@ view: keyword {
   }
 
   dimension: keyword_max_bid {
+    description: "If this keyword is managed by a DS bid strategy, the bid strategy will never raise bids above this limit."
     type: number
     value_format_name: id
     sql: ${TABLE}.keywordMaxBid ;;
   }
 
   dimension: keyword_max_cpc {
+    description: "Overrides the ad group's max CPC and sets a maximum amount you are willing to pay if someone clicks an ad for this specific keyword. If this field is empty, the keyword will use the ad group's max CPC."
     type: number
     sql: ${TABLE}.keywordMaxCpc ;;
   }
 
   dimension: keyword_min_bid {
+    description: "If this keyword is managed by a DS bid strategy, the bid strategy will never lower bids below this limit."
     type: number
     value_format_name: id
     sql: ${TABLE}.keywordMinBid ;;
@@ -168,11 +179,12 @@ view: keyword {
   }
 
   dimension: keyword_url_params {
+    hidden:  yes
     type: string
     sql: ${TABLE}.keywordUrlParams ;;
   }
 
-  dimension_group: last_modified_timestamp {
+  dimension_group: last_modified {
     type: time
     timeframes: [
       raw,
@@ -187,6 +199,7 @@ view: keyword {
   }
 
   dimension: quality_score_current {
+    description: "Google Ads and Bing Ads only. The most recent value of the engine's Quality score (QS) for a keyword."
     type: number
     sql: ${TABLE}.qualityScoreCurrent ;;
   }
@@ -197,6 +210,7 @@ view: keyword {
   }
 
   dimension: top_of_page_bid_current {
+    description: "Google Ads only. Approximates the current CPC bid needed for your ad to appear regularly in the top positions above the search results."
     type: number
     sql: ${TABLE}.topOfPageBidCurrent ;;
   }
