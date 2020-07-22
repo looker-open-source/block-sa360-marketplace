@@ -70,6 +70,10 @@ view: campaign {
   dimension: campaign {
     type: string
     sql: ${TABLE}.campaign ;;
+    link: {
+      url: "https://googlemarscisandbox.cloud.looker.com/dashboards/23?Campaign%20Name={{value}}"
+      label: "Campaign Performance Dashboard"
+    }
   }
 
   dimension_group: campaign_end {
@@ -173,6 +177,7 @@ view: campaign {
   }
 
   dimension: device_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.deviceTargets ;;
   }
@@ -183,16 +188,19 @@ view: campaign {
   }
 
   dimension: effective_city_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveCityTargets ;;
   }
 
   dimension: effective_country_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveCountryTargets ;;
   }
 
   dimension: effective_device_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveDeviceTargets ;;
   }
@@ -203,11 +211,13 @@ view: campaign {
   }
 
   dimension: effective_metro_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveMetroTargets ;;
   }
 
   dimension: effective_province_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveProvinceTargets ;;
   }
@@ -218,21 +228,25 @@ view: campaign {
   }
 
   dimension: excluded_city_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.excludedCityTargets ;;
   }
 
   dimension: excluded_country_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.excludedCountryTargets ;;
   }
 
   dimension: excluded_metro_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.excludedMetroTargets ;;
   }
 
   dimension: excluded_province_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.excludedProvinceTargets ;;
   }
@@ -243,6 +257,7 @@ view: campaign {
   }
 
   dimension: language_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.languageTargets ;;
   }
@@ -262,6 +277,7 @@ view: campaign {
   }
 
   dimension: metro_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.metroTargets ;;
   }
@@ -272,11 +288,13 @@ view: campaign {
   }
 
   dimension: network_target {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.networkTarget ;;
   }
 
   dimension: province_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.provinceTargets ;;
   }
@@ -287,6 +305,7 @@ view: campaign {
   }
 
   dimension: yahoo_geo_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.yahooGeoTargets ;;
   }
