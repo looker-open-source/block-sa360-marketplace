@@ -10,8 +10,84 @@ datagroup: block_sa360_default_datagroup {
 
 persist_with: block_sa360_default_datagroup
 
+
+
+explore: advertiser_device_stats {
+  label: "(1) Advertiser Events"
+  join: advertiser_floodlight_and_device_stats {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${advertiser_device_stats.advertiser_id} = ${advertiser_floodlight_and_device_stats.advertiser_id}
+            AND ${advertiser_device_stats._latest_date} = ${advertiser_floodlight_and_device_stats._latest_date}
+            AND ${advertiser_device_stats.device_segment} = ${advertiser_floodlight_and_device_stats.device_segment};;
+  }
+  # Join Dimensional Tables
+  join: advertiser {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${advertiser_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
+}
+
+explore: campaign_device_stats {
+  label: "(2) Campaign Events"
+  join: campaign_floodlight_and_device_stats {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${campaign_device_stats.campaign_id} = ${campaign_floodlight_and_device_stats.campaign_id}
+            AND ${campaign_device_stats._latest_date} = ${campaign_floodlight_and_device_stats._latest_date}
+            AND ${campaign_device_stats.device_segment} = ${campaign_floodlight_and_device_stats.device_segment};;
+  }
+  # Join Dimensional Tables
+  join: campaign {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${campaign_device_stats.campaign_id} = ${campaign.campaign_id} ;;
+  }
+  join: advertiser {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${campaign_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
+}
+
+explore: ad_group_device_stats {
+  label: "(3) Ad Group Events"
+  join: ad_group_floodlight_and_device_stats {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${ad_group_device_stats.ad_group_id} = ${ad_group_floodlight_and_device_stats.ad_group_id}
+            AND ${ad_group_device_stats._latest_date} = ${ad_group_floodlight_and_device_stats._latest_date}
+            AND ${ad_group_device_stats.device_segment} = ${ad_group_floodlight_and_device_stats.device_segment};;
+  }
+  # Join Dimensional Tables
+  join: ad_group {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${ad_group_device_stats.ad_group_id} = ${ad_group.ad_group_id} ;;
+  }
+  join: campaign {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${ad_group_device_stats.campaign_id} = ${campaign.campaign_id} ;;
+  }
+  join: advertiser {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${ad_group_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
+}
+
 explore: keyword_device_stats {
-  label: "(1) Cost, Clicks, Imps 🔍 "
+  label: "(4) Keyword Events"
+  join: keyword_floodlight_and_device_stats {
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${keyword_device_stats.keyword_id} = ${keyword_floodlight_and_device_stats.keyword_id}
+            AND ${keyword_device_stats._latest_date} = ${keyword_floodlight_and_device_stats._latest_date}
+            AND ${keyword_device_stats.device_segment} = ${keyword_floodlight_and_device_stats.device_segment};;
+  }
+  # Join Dimensional Tables
   join: keyword {
     relationship: many_to_one
     type: left_outer
@@ -32,27 +108,8 @@ explore: keyword_device_stats {
     type: left_outer
     sql_on: ${keyword_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
-   join: keyword_floodlight_and_device_stats {
-     relationship: one_to_one
-     type: left_outer
-     sql_on: ${keyword_device_stats.keyword_id} = ${keyword_floodlight_and_device_stats.keyword_id} ;;
-    # AND ${keyword_device_stats.visit_date} = ${keyword_floodlight_and_device_stats.visit_date}
-   }
 }
 
-explore: floodlight_activity {
-  label: "(2) Floodlight Data 🔦"
-  description: "this is interesting but doesn't connect with any action because the ID/Group ID in the keyword_floodlight_and_device_stats is not populated"
-}
-
-explore: keyword_floodlight_and_device_stats {
-  label: "(3) Revenue, Transactions, Actions"
-  join: keyword {
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${keyword_floodlight_and_device_stats.keyword_id} = ${keyword.keyword_id} ;;
-  }
-}
 
 ###UNUSED EXPLORES
 

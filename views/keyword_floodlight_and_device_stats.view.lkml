@@ -155,6 +155,15 @@ view: keyword_floodlight_and_device_stats {
     sql: ${dfa_revenue} ;;
   }
 
+  measure: ROAS {
+    label: "Percent ROAS"
+    description: "Associated revenue divided by the total cost"
+    type: number
+    value_format_name: percent_2
+    sql: 1.0 * ${total_revenue} / NULLIF(${keyword_device_stats.total_cost},0) - 1 ;;
+  }
+
+
   measure: total_transactions {
     type: sum
     sql: ${dfa_transactions} ;;
