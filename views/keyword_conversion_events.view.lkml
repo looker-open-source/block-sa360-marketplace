@@ -14,7 +14,7 @@ view: keyword_conversion_events {
       year
     ]
     convert_tz: no
-#     datatype: datetime
+    datatype: date
     sql: ${TABLE}._DATA_DATE ;;
   }
 

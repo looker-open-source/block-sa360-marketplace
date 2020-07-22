@@ -68,8 +68,13 @@ view: campaign {
   }
 
   dimension: campaign {
+    hidden: yes
     type: string
     sql: ${TABLE}.campaign ;;
+  }
+
+  dimension: campaign_name {
+    sql: CONCAT(${campaign_id},' - ',${campaign}) ;;
     link: {
       url: "https://googlemarscisandbox.cloud.looker.com/dashboards/23?Campaign%20Name={{value}}"
       label: "Campaign Performance Dashboard"
