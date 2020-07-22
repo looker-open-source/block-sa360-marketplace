@@ -33,31 +33,37 @@ view: ad_group_conversion_events {
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_group_engine_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupEngineId ;;
   }
 
   dimension: ad_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupId ;;
   }
 
   dimension: advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.advertiserId ;;
   }
 
   dimension: agency_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.agencyId ;;
   }
 
   dimension: campaign_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.campaignId ;;
   }
@@ -78,6 +84,7 @@ view: ad_group_conversion_events {
   }
 
   dimension: device_segment {
+    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
@@ -103,6 +110,7 @@ view: ad_group_conversion_events {
   }
 
   dimension: effective_bid_strategy_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.effectiveBidStrategyId ;;
   }

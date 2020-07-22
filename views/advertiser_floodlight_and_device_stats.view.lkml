@@ -33,11 +33,13 @@ view: advertiser_conversion_events {
   }
 
   dimension: advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.advertiserId ;;
   }
 
   dimension: agency_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.agencyId ;;
   }
@@ -58,6 +60,7 @@ view: advertiser_conversion_events {
   }
 
   dimension: device_segment {
+    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
@@ -68,11 +71,13 @@ view: advertiser_conversion_events {
   }
 
   dimension: dfa_advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.dfaAdvertiserId ;;
   }
 
   dimension: dfa_network_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.dfaNetworkId ;;
   }
