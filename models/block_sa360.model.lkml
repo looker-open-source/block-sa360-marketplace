@@ -19,7 +19,7 @@ explore: advertiser_events {
     relationship: one_to_one
     type: left_outer
     sql_on: ${advertiser_events.advertiser_id} = ${advertiser_conversion_events.advertiser_id}
-            AND ${advertiser_events._latest_date} = ${advertiser_conversion_events._latest_date}
+            AND ${advertiser_events._data_date} = ${advertiser_conversion_events._data_date}
             AND ${advertiser_events.device_segment} = ${advertiser_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
@@ -37,7 +37,7 @@ explore: campaign_events {
     relationship: one_to_one
     type: left_outer
     sql_on: ${campaign_events.campaign_id} = ${campaign_conversion_events.campaign_id}
-            AND ${campaign_events._latest_date} = ${campaign_conversion_events._latest_date}
+            AND ${campaign_events._data_date} = ${campaign_conversion_events._data_date}
             AND ${campaign_events.device_segment} = ${campaign_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
@@ -60,7 +60,7 @@ explore: ad_group_events {
     relationship: one_to_one
     type: left_outer
     sql_on: ${ad_group_events.ad_group_id} = ${ad_group_conversion_events.ad_group_id}
-            AND ${ad_group_events._latest_date} = ${ad_group_conversion_events._latest_date}
+            AND ${ad_group_events._data_date} = ${ad_group_conversion_events._data_date}
             AND ${ad_group_events.device_segment} = ${ad_group_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
@@ -88,7 +88,7 @@ explore: keyword_events {
     relationship: one_to_one
     type: left_outer
     sql_on: ${keyword_events.keyword_id} = ${keyword_conversion_events.keyword_id}
-            AND ${keyword_events._latest_date} = ${keyword_conversion_events._latest_date}
+            AND ${keyword_events._data_date} = ${keyword_conversion_events._data_date}
             AND ${keyword_events.device_segment} = ${keyword_conversion_events.device_segment};;
   }
   # Join Dimensional Tables

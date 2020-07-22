@@ -34,6 +34,7 @@ view: keyword_events {
     sql: ${TABLE}._LATEST_DATE ;;
   }
 
+
   dimension: account_id {
     type: string
     sql: ${TABLE}.accountId ;;
