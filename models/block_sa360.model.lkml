@@ -146,3 +146,25 @@ explore: keyword_events {
     sql_on: ${keyword_conversion_events.floodlight_activity_id} = ${floodlight_activity.floodlight_activity_id} ;;
   }
 }
+
+explore: product_events {
+  join: product_conversion_events {
+    view_label: "Product Events"
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${product_conversion_events.product_id} = ${product_events.product_id}
+            AND ${product_conversion_events._data_date} = ${product_events._data_date}
+            AND ${product_conversion_events.device_segment} = ${product_events.device_segment};;
+  }
+  join: product {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${product_events.product_id} = ${product.product_id} ;;
+  }
+  join: advertiser {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${product_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
+
+}

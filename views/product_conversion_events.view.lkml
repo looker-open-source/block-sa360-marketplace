@@ -1,8 +1,9 @@
-view: product_advertised_floodlight_and_device_stats {
+view: product_conversion_events {
   sql_table_name: `SA360.ProductAdvertisedFloodlightAndDeviceStats_21700000000010391`
     ;;
 
   dimension_group: _data {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -18,6 +19,7 @@ view: product_advertised_floodlight_and_device_stats {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -43,11 +45,13 @@ view: product_advertised_floodlight_and_device_stats {
   }
 
   dimension: advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.advertiserId ;;
   }
 
   dimension: agency_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.agencyId ;;
   }
@@ -58,6 +62,7 @@ view: product_advertised_floodlight_and_device_stats {
   }
 
   dimension_group: date {
+    hidden:  yes
     type: time
     timeframes: [
       raw,
@@ -73,6 +78,7 @@ view: product_advertised_floodlight_and_device_stats {
   }
 
   dimension: device_segment {
+    hidden:  yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
@@ -112,8 +118,46 @@ view: product_advertised_floodlight_and_device_stats {
     sql: ${TABLE}.productId ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+  ##### Product Standard Metric Aggregates #####
+
+  measure: total_actions {
+    type: sum
+    sql: ${dfa_actions} ;;
   }
+
+  measure: total_weighted_actions {
+    type: sum
+    sql: ${dfa_weighted_actions} ;;
+  }
+
+  measure: total_transactions {
+    type: sum
+    sql: ${dfa_transactions} ;;
+  }
+
+  ##### Product Conversion Metrics #####
+
+  measure: total_revenue {
+    type: sum
+    value_format_name: usd
+    sql: ${dfa_revenue} ;;
+  }
+
+  measure: ROAS {
+    label: "Percent ROAS"
+    description: "Associated revenue divided by the total cost"
+    type: number
+    value_format_name: percent_2
+    sql: 1.0 * ${total_revenue} / NULLIF(${product_events.total_cost},0) - 1 ;;
+  }
+
+  measure: cost_per_acquisition {
+    label: "Cost per Acquisition (CPA)"
+    description: "Average cost per conversion"
+    type: number
+    value_format_name: usd
+    sql: ${product_events.total_cost}*1.0/NULLIF(${total_actions},0) ;;
+  }
+
+
 }
