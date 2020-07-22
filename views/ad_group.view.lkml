@@ -3,6 +3,7 @@ view: ad_group {
     ;;
 
   dimension_group: _data {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -18,6 +19,7 @@ view: ad_group {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -43,11 +45,13 @@ view: ad_group {
   }
 
   dimension: ad_group_broad_max_cpc {
+    description: "Default bid for broad match search keywords in this ad group (Bing Ads only)."
     type: number
     sql: ${TABLE}.adGroupBroadMaxCpc ;;
   }
 
   dimension: ad_group_content_max_cpc {
+    description: "Default bid for content keywords in this ad group."
     type: number
     sql: ${TABLE}.adGroupContentMaxCpc ;;
   }
@@ -68,16 +72,19 @@ view: ad_group {
   }
 
   dimension: ad_group_engine_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupEngineId ;;
   }
 
   dimension: ad_group_exact_max_cpc {
+    description: "Default bid for exact match keywords in this ad group (Bing Ads only)."
     type: number
     sql: ${TABLE}.adGroupExactMaxCpc ;;
   }
 
   dimension: ad_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupId ;;
   }
@@ -88,16 +95,19 @@ view: ad_group {
   }
 
   dimension: ad_group_mobile_bid_adjustment {
+    description: "The percentage by which bids are adjusted for mobile."
     type: number
     sql: ${TABLE}.adGroupMobileBidAdjustment ;;
   }
 
   dimension: ad_group_phrase_max_cpc {
+    description: "Default bid for phrasematch search keywords in this ad group (Bing Ads only)."
     type: number
     sql: ${TABLE}.adGroupPhraseMaxCpc ;;
   }
 
   dimension: ad_group_search_max_cpc {
+    description: "Default bid for search keywords in this ad group."
     type: number
     sql: ${TABLE}.adGroupSearchMaxCpc ;;
   }
@@ -133,6 +143,7 @@ view: ad_group {
   }
 
   dimension: bing_ads_ad_distributions {
+    description: "Ad distribution channels used by Bing Ads ad groups; a combination of Search and Content."
     type: string
     sql: ${TABLE}.bingAdsAdDistributions ;;
   }
@@ -148,16 +159,18 @@ view: ad_group {
   }
 
   dimension: city_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.cityTargets ;;
   }
 
   dimension: country_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.countryTargets ;;
   }
 
-  dimension_group: creation_timestamp {
+  dimension_group: creation {
     type: time
     timeframes: [
       raw,
@@ -172,26 +185,31 @@ view: ad_group {
   }
 
   dimension: device_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.deviceTargets ;;
   }
 
   dimension: effective_bid_strategy_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.effectiveBidStrategyId ;;
   }
 
   dimension: effective_city_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveCityTargets ;;
   }
 
   dimension: effective_country_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveCountryTargets ;;
   }
 
   dimension: effective_device_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveDeviceTargets ;;
   }
@@ -202,26 +220,30 @@ view: ad_group {
   }
 
   dimension: effective_metro_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveMetroTargets ;;
   }
 
   dimension: effective_province_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.effectiveProvinceTargets ;;
   }
 
-  dimension: engine_remarketing_list_target_all {
+  dimension: is_engine_remarketing_list_target_all {
+    description: "Indicates if the ad group only uses remarketing targets to adjust bids."
     type: yesno
     sql: ${TABLE}.engineRemarketingListTargetAll ;;
   }
 
   dimension: engine_status {
+    description: "Additional status of the ad group in the external engine account."
     type: string
     sql: ${TABLE}.engineStatus ;;
   }
 
-  dimension_group: last_modified_timestamp {
+  dimension_group: last_modified {
     type: time
     timeframes: [
       raw,
@@ -236,11 +258,13 @@ view: ad_group {
   }
 
   dimension: metro_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.metroTargets ;;
   }
 
   dimension: province_targets {
+    group_label: "Targets"
     type: string
     sql: ${TABLE}.provinceTargets ;;
   }

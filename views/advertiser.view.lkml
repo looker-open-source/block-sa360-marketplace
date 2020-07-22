@@ -3,6 +3,7 @@ view: advertiser {
     ;;
 
   dimension_group: _data {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -18,6 +19,7 @@ view: advertiser {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -57,7 +59,7 @@ view: advertiser {
     sql: ${TABLE}.agencyId ;;
   }
 
-  dimension_group: creation_timestamp {
+  dimension_group: creation {
     type: time
     timeframes: [
       raw,
@@ -72,21 +74,24 @@ view: advertiser {
   }
 
   dimension: dfa_advertiser_id {
+    group_label: "DoubleClick for Advertisers"
     type: string
     sql: ${TABLE}.dfaAdvertiserId ;;
   }
 
   dimension: dfa_network_id {
+    group_label: "DoubleClick for Advertisers"
     type: string
     sql: ${TABLE}.dfaNetworkId ;;
   }
 
   dimension: dfa_network_time_zone {
+    group_label: "DoubleClick for Advertisers"
     type: string
     sql: ${TABLE}.dfaNetworkTimeZone ;;
   }
 
-  dimension_group: last_modified_timestamp {
+  dimension_group: last_modified {
     type: time
     timeframes: [
       raw,
@@ -106,6 +111,7 @@ view: advertiser {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }
