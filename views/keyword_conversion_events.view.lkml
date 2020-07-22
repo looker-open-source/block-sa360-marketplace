@@ -143,6 +143,60 @@ view: keyword_conversion_events {
     sql: ${TABLE}.keywordId ;;
   }
 
+  ##### Period Reporting Metrics #####
+
+  dimension: is_period_1 {
+    hidden: yes
+    sql:
+    CASE
+      WHEN ${_data_date} BETWEEN {% parameter period_1_begin %} AND {% parameter period_1_end %}
+      THEN 1
+      ELSE 0
+    END
+  ;;
+  }
+
+  parameter: period_1_begin {
+    description: "Use with the Period Reporting Metrics"
+    type: date_time
+  }
+
+  parameter: period_1_end {
+    type: date_time
+  }
+
+  dimension: is_period_2 {
+    hidden: yes
+    sql:
+    CASE
+      WHEN ${_data_date} BETWEEN {% parameter period_2_begin %} AND {% parameter period_2_end %}
+      THEN 1
+      ELSE 0
+    END
+  ;;
+  }
+
+  parameter: period_2_begin {
+    type: date_time
+  }
+
+  parameter: period_2_end {
+    type: date_time
+  }
+
+  measure: total_actions_p1 {
+    type: sum
+    sql: ${dfa_actions} ;;
+    filters: [is_period_1: "1"]
+  }
+
+  measure: total_actions_p2 {
+    type: sum
+    sql: ${dfa_actions} ;;
+    filters: [is_period_2: "1"]
+  }
+
+
   ##### Keyword Standard Metric Aggregates #####
 
   measure: total_actions {
