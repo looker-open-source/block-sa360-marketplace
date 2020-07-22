@@ -1,4 +1,4 @@
-view: campaign_device_stats {
+view: campaign_events {
   sql_table_name: `SA360.CampaignDeviceStats_21700000000010391`
     ;;
 

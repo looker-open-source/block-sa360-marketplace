@@ -12,101 +12,105 @@ persist_with: block_sa360_default_datagroup
 
 
 
-explore: advertiser_device_stats {
+explore: advertiser_events {
   label: "(1) Advertiser Events"
-  join: advertiser_floodlight_and_device_stats {
+  join: advertiser_conversion_events {
+    view_label: "Advertiser Events"
     relationship: one_to_one
     type: left_outer
-    sql_on: ${advertiser_device_stats.advertiser_id} = ${advertiser_floodlight_and_device_stats.advertiser_id}
-            AND ${advertiser_device_stats._latest_date} = ${advertiser_floodlight_and_device_stats._latest_date}
-            AND ${advertiser_device_stats.device_segment} = ${advertiser_floodlight_and_device_stats.device_segment};;
+    sql_on: ${advertiser_events.advertiser_id} = ${advertiser_conversion_events.advertiser_id}
+            AND ${advertiser_events._latest_date} = ${advertiser_conversion_events._latest_date}
+            AND ${advertiser_events.device_segment} = ${advertiser_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
   join: advertiser {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${advertiser_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${advertiser_events.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
 }
 
-explore: campaign_device_stats {
+explore: campaign_events {
   label: "(2) Campaign Events"
-  join: campaign_floodlight_and_device_stats {
+  join: campaign_conversion_events {
+    view_label: "Campaign Events"
     relationship: one_to_one
     type: left_outer
-    sql_on: ${campaign_device_stats.campaign_id} = ${campaign_floodlight_and_device_stats.campaign_id}
-            AND ${campaign_device_stats._latest_date} = ${campaign_floodlight_and_device_stats._latest_date}
-            AND ${campaign_device_stats.device_segment} = ${campaign_floodlight_and_device_stats.device_segment};;
+    sql_on: ${campaign_events.campaign_id} = ${campaign_conversion_events.campaign_id}
+            AND ${campaign_events._latest_date} = ${campaign_conversion_events._latest_date}
+            AND ${campaign_events.device_segment} = ${campaign_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
   join: campaign {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${campaign_device_stats.campaign_id} = ${campaign.campaign_id} ;;
+    sql_on: ${campaign_events.campaign_id} = ${campaign.campaign_id} ;;
   }
   join: advertiser {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${campaign_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${campaign_events.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
 }
 
-explore: ad_group_device_stats {
+explore: ad_group_events {
   label: "(3) Ad Group Events"
-  join: ad_group_floodlight_and_device_stats {
+  join: ad_group_conversion_events {
+    view_label: "Ad Group Events"
     relationship: one_to_one
     type: left_outer
-    sql_on: ${ad_group_device_stats.ad_group_id} = ${ad_group_floodlight_and_device_stats.ad_group_id}
-            AND ${ad_group_device_stats._latest_date} = ${ad_group_floodlight_and_device_stats._latest_date}
-            AND ${ad_group_device_stats.device_segment} = ${ad_group_floodlight_and_device_stats.device_segment};;
+    sql_on: ${ad_group_events.ad_group_id} = ${ad_group_conversion_events.ad_group_id}
+            AND ${ad_group_events._latest_date} = ${ad_group_conversion_events._latest_date}
+            AND ${ad_group_events.device_segment} = ${ad_group_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
   join: ad_group {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${ad_group_device_stats.ad_group_id} = ${ad_group.ad_group_id} ;;
+    sql_on: ${ad_group_events.ad_group_id} = ${ad_group.ad_group_id} ;;
   }
   join: campaign {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${ad_group_device_stats.campaign_id} = ${campaign.campaign_id} ;;
+    sql_on: ${ad_group_events.campaign_id} = ${campaign.campaign_id} ;;
   }
   join: advertiser {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${ad_group_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${ad_group_events.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
 }
 
-explore: keyword_device_stats {
+explore: keyword_events {
   label: "(4) Keyword Events"
-  join: keyword_floodlight_and_device_stats {
+  join: keyword_conversion_events {
+    view_label: "Keyword Events"
     relationship: one_to_one
     type: left_outer
-    sql_on: ${keyword_device_stats.keyword_id} = ${keyword_floodlight_and_device_stats.keyword_id}
-            AND ${keyword_device_stats._latest_date} = ${keyword_floodlight_and_device_stats._latest_date}
-            AND ${keyword_device_stats.device_segment} = ${keyword_floodlight_and_device_stats.device_segment};;
+    sql_on: ${keyword_events.keyword_id} = ${keyword_conversion_events.keyword_id}
+            AND ${keyword_events._latest_date} = ${keyword_conversion_events._latest_date}
+            AND ${keyword_events.device_segment} = ${keyword_conversion_events.device_segment};;
   }
   # Join Dimensional Tables
   join: keyword {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${keyword_device_stats.keyword_id} = ${keyword.keyword_id} ;;
+    sql_on: ${keyword_events.keyword_id} = ${keyword.keyword_id} ;;
   }
   join: ad_group {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${keyword_device_stats.ad_group_id} = ${ad_group.ad_group_id} ;;
+    sql_on: ${keyword_events.ad_group_id} = ${ad_group.ad_group_id} ;;
   }
   join: campaign {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${keyword_device_stats.campaign_id} = ${campaign.campaign_id} ;;
+    sql_on: ${keyword_events.campaign_id} = ${campaign.campaign_id} ;;
   }
   join: advertiser {
     relationship: many_to_one
     type: left_outer
-    sql_on: ${keyword_device_stats.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${keyword_events.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
 }
 
@@ -129,11 +133,11 @@ explore: keyword_device_stats {
 #
 # explore: ad_group {}
 #
-# explore: ad_group_device_stats {}
+# explore: ad_group_events {}
 #
 # explore: ad_group_feed_item_stats {}
 #
-# explore: ad_group_floodlight_and_device_stats {}
+# explore: ad_group_conversion_events {}
 #
 # explore: ad_group_floodlight_and_feed_item_stats {}
 #
@@ -147,9 +151,9 @@ explore: keyword_device_stats {
 #
 # explore: advertiser {}
 #
-# explore: advertiser_device_stats {}
+# explore: advertiser_events {}
 #
-# explore: advertiser_floodlight_and_device_stats {}
+# explore: advertiser_conversion_events {}
 #
 # explore: advertiser_stats {}
 #
@@ -159,11 +163,11 @@ explore: keyword_device_stats {
 #
 # explore: campaign {}
 #
-# explore: campaign_device_stats {}
+# explore: campaign_events {}
 #
 # explore: campaign_feed_item_stats {}
 #
-# explore: campaign_floodlight_and_device_stats {}
+# explore: campaign_conversion_events {}
 #
 # explore: campaign_floodlight_and_feed_item_stats {}
 #
@@ -187,7 +191,7 @@ explore: keyword_device_stats {
 #
 # explore: keyword {}
 #
-# explore: keyword_floodlight_and_device_stats {}
+# explore: keyword_conversion_events {}
 #
 # explore: keyword_stats {}
 #

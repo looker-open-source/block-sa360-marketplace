@@ -1,4 +1,4 @@
-view: advertiser_floodlight_and_device_stats {
+view: advertiser_conversion_events {
   sql_table_name: `SA360.AdvertiserFloodlightAndDeviceStats_21700000000010391`
     ;;
 
@@ -132,7 +132,7 @@ view: advertiser_floodlight_and_device_stats {
     description: "Associated revenue divided by the total cost"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_device_stats.total_cost},0) - 1 ;;
+    sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_events.total_cost},0) - 1 ;;
   }
 
   measure: cost_per_acquisition {
@@ -140,6 +140,6 @@ view: advertiser_floodlight_and_device_stats {
     description: "Average cost per conversion"
     type: number
     value_format_name: usd
-    sql: ${advertiser_device_stats.total_cost}*1.0/NULLIF(${total_actions},0) ;;
+    sql: ${advertiser_events.total_cost}*1.0/NULLIF(${total_actions},0) ;;
   }
 }

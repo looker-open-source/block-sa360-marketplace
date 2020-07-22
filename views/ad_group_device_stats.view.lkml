@@ -1,4 +1,4 @@
-view: ad_group_device_stats {
+view: ad_group_events {
   sql_table_name: `SA360.AdGroupDeviceStats_21700000000010391`
     ;;
 

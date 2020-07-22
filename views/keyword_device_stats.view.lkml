@@ -1,4 +1,4 @@
-view: keyword_device_stats {
+view: keyword_events {
   sql_table_name: `SA360.KeywordDeviceStats_21700000000010391`
     ;;
 
