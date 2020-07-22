@@ -173,7 +173,7 @@ view: keyword {
     type: string
     sql: ${TABLE}.keywordText ;;
     link: {
-      url: "https://googlemarscisandbox.cloud.looker.com/dashboards/24?Keyword={{value}}"
+      url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/24?Keyword={{value}}"
       label: "Keyword Performance Lookup"
     }
   }
