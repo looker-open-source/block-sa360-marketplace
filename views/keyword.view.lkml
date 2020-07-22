@@ -161,6 +161,10 @@ view: keyword {
   dimension: keyword_text {
     type: string
     sql: ${TABLE}.keywordText ;;
+    link: {
+      url: "https://googlemarscisandbox.cloud.looker.com/dashboards/24?Keyword={{value}}"
+      label: "Keyword Performance Lookup"
+    }
   }
 
   dimension: keyword_url_params {
