@@ -28,6 +28,12 @@ explore: advertiser_events {
     type: left_outer
     sql_on: ${advertiser_events.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
+  join: account {
+    view_label: "Advertiser"
+    relationship: one_to_many
+    type: left_outer
+    sql_on: ${account.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
 }
 
 explore: campaign_events {
@@ -39,6 +45,12 @@ explore: campaign_events {
     sql_on: ${campaign_events.campaign_id} = ${campaign_conversion_events.campaign_id}
             AND ${campaign_events._data_date} = ${campaign_conversion_events._data_date}
             AND ${campaign_events.device_segment} = ${campaign_conversion_events.device_segment};;
+  }
+  join: account {
+    view_label: "Campaign Events"
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${account.account_id} = ${campaign_events.account_id} ;;
   }
   # Join Dimensional Tables
   join: campaign {
@@ -62,6 +74,12 @@ explore: ad_group_events {
     sql_on: ${ad_group_events.ad_group_id} = ${ad_group_conversion_events.ad_group_id}
             AND ${ad_group_events._data_date} = ${ad_group_conversion_events._data_date}
             AND ${ad_group_events.device_segment} = ${ad_group_conversion_events.device_segment};;
+  }
+  join: account {
+    view_label: "Ad Group Events"
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${account.account_id} = ${ad_group_events.account_id} ;;
   }
   # Join Dimensional Tables
   join: ad_group {
@@ -90,6 +108,12 @@ explore: keyword_events {
     sql_on: ${keyword_events.keyword_id} = ${keyword_conversion_events.keyword_id}
             AND ${keyword_events._data_date} = ${keyword_conversion_events._data_date}
             AND ${keyword_events.device_segment} = ${keyword_conversion_events.device_segment};;
+  }
+  join: account {
+    view_label: "Keyword Events"
+    relationship: one_to_one
+    type: left_outer
+    sql_on: ${account.account_id} = ${keyword_events.account_id} ;;
   }
   # Join Dimensional Tables
   join: keyword {
