@@ -87,6 +87,11 @@ view: campaign {
     sql: ${TABLE}.campaignEndDate ;;
   }
 
+  dimension: is_active_now {
+    type: yesno
+    sql: ${campaign_end_date} >= CURRENT_DATE() ;;
+  }
+
   dimension: campaign_engine_id {
     type: string
     sql: ${TABLE}.campaignEngineId ;;
@@ -120,6 +125,12 @@ view: campaign {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.campaignStartDate ;;
+  }
+
+  dimension: weeks_since_campaign_start {
+    label: "Weeks Since Campaign Start"
+    type: number
+    sql: DATE_DIFF(CURRENT_DATE(), ${campaign_start_date},  WEEK)  ;;
   }
 
   dimension: campaign_type {
