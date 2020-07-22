@@ -137,8 +137,53 @@ view: campaign_device_stats {
     sql: ${TABLE}.visits ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+##### Ad Event Metrics #####
+
+  measure: total_impressions {
+    type: sum
+    sql: ${impr} ;;
   }
+
+  measure: total_clicks {
+    type: sum
+    sql: ${clicks} ;;
+  }
+
+  measure: total_visits {
+    type: sum
+    sql: ${visits} ;;
+  }
+
+  measure: total_cost {
+    label: "Total Spend (Search Clicks)"
+    type: sum
+    value_format_name: usd
+    sql: ${cost} ;;
+  }
+
+  measure: total_cumulative_spend {
+    label: "Total Spend (Cumulative)"
+    type: running_total
+    sql: ${total_cost} ;;
+    value_format_name: usd_0
+
+  }
+
+  measure: click_through_rate {
+    label: "Click Through Rate (CTR)"
+    description: "Percent of people that click on an ad."
+    type: number
+    value_format_name: percent_2
+    sql: ${total_clicks}*1.0/NULLIF(${total_impressions},0);;
+  }
+
+  measure: cost_per_click {
+    label: "Cost per Click (CPC)"
+    description: "Average cost per ad click."
+    type: number
+    sql: ${total_cost}* 1.0/ NULLIF(${total_clicks},0) ;;
+    value_format_name: usd
+  }
+
+
 }

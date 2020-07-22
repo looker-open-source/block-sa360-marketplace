@@ -126,9 +126,4 @@ view: ad_group_floodlight_and_feed_item_stats {
     type: string
     sql: ${TABLE}.floodlightGroupId ;;
   }
-
-  measure: count {
-    type: count
-    drill_fields: []
-  }
 }

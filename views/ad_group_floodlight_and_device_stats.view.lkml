@@ -117,8 +117,44 @@ view: ad_group_floodlight_and_device_stats {
     sql: ${TABLE}.floodlightGroupId ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+  ##### Keyword Standard Metric Aggregates #####
+
+  measure: total_actions {
+    type: sum
+    sql: ${dfa_actions} ;;
+  }
+
+  measure: total_weighted_actions {
+    type: sum
+    sql: ${dfa_weighted_actions} ;;
+  }
+
+  measure: total_transactions {
+    type: sum
+    sql: ${dfa_transactions} ;;
+  }
+
+  ##### Keyword Conversion Metrics #####
+
+  measure: total_revenue {
+    type: sum
+    value_format_name: usd
+    sql: ${dfa_revenue} ;;
+  }
+
+  measure: ROAS {
+    label: "Percent ROAS"
+    description: "Associated revenue divided by the total cost"
+    type: number
+    value_format_name: percent_2
+    sql: 1.0 * ${total_revenue} / NULLIF(${ad_group_device_stats.total_cost},0) - 1 ;;
+  }
+
+  measure: cost_per_acquisition {
+    label: "Cost per Acquisition (CPA)"
+    description: "Average cost per conversion"
+    type: number
+    value_format_name: usd
+    sql: ${ad_group_device_stats.total_cost}*1.0/NULLIF(${total_actions},0) ;;
   }
 }

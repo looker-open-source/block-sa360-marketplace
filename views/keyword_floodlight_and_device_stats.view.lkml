@@ -65,7 +65,6 @@ view: keyword_floodlight_and_device_stats {
   }
 
   dimension_group: visit {
-    description: "I believe this is visit????"
     type: time
     timeframes: [
       raw,
@@ -134,10 +133,7 @@ view: keyword_floodlight_and_device_stats {
     sql: ${TABLE}.keywordId ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
+  ##### Keyword Standard Metric Aggregates #####
 
   measure: total_actions {
     type: sum
@@ -148,6 +144,13 @@ view: keyword_floodlight_and_device_stats {
     type: sum
     sql: ${dfa_weighted_actions} ;;
   }
+
+  measure: total_transactions {
+    type: sum
+    sql: ${dfa_transactions} ;;
+  }
+
+   ##### Keyword Conversion Metrics #####
 
   measure: total_revenue {
     type: sum
@@ -163,14 +166,13 @@ view: keyword_floodlight_and_device_stats {
     sql: 1.0 * ${total_revenue} / NULLIF(${keyword_device_stats.total_cost},0) - 1 ;;
   }
 
-
-  measure: total_transactions {
-    type: sum
-    sql: ${dfa_transactions} ;;
+  measure: cost_per_acquisition {
+    label: "Cost per Acquisition (CPA)"
+    description: "Average cost per conversion"
+    type: number
+    value_format_name: usd
+    sql: ${keyword_device_stats.total_cost}*1.0/NULLIF(${total_actions},0) ;;
   }
 
-#   measure: roas {
-#     type: number
-#     sql: ${total_revenue}/${keyword_device_stats.total_cost} ;;
-#   }
-}
+
+  }
