@@ -4,6 +4,7 @@ view: campaign_conversion_events {
     ;;
 
   dimension_group: _data {
+    hidden: yes
     type: time
     timeframes: [
       raw,

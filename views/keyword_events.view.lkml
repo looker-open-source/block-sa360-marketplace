@@ -3,10 +3,11 @@ view: keyword_events {
     ;;
 
   dimension_group: _data {
-  hidden:  yes
     type: time
     timeframes: [
       raw,
+      hour_of_day,
+      day_of_week,
       date,
       week,
       month,
@@ -15,7 +16,7 @@ view: keyword_events {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}._DATA_DATE ;;
+    sql: CAST(${TABLE}._DATA_DATE AS TIMESTAMP) ;;
   }
 
   dimension_group: _latest {
