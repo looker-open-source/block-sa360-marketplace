@@ -14,6 +14,7 @@ persist_with: block_sa360_default_datagroup
 
 explore: advertiser_events {
   label: "(1) Advertiser Events"
+  description: "Performance metrics across all of an advertiser's engine accounts and campaigns including advertiser configuration attributes."
   join: advertiser_conversion_events {
     view_label: "Advertiser Events"
     relationship: one_to_one
@@ -38,6 +39,7 @@ explore: advertiser_events {
 
 explore: campaign_events {
   label: "(2) Campaign Events"
+  description: "Performance metrics and configuration attributes for Campaigns."
   join: campaign_conversion_events {
     view_label: "Campaign Events"
     relationship: one_to_one
@@ -67,6 +69,7 @@ explore: campaign_events {
 
 explore: ad_group_events {
   label: "(3) Ad Group Events"
+  description: "Performance metrics and configuration attributes for Ad Groups."
   join: ad_group_conversion_events {
     view_label: "Ad Group Events"
     relationship: one_to_one
@@ -101,6 +104,7 @@ explore: ad_group_events {
 
 explore: keyword_events {
   label: "(4) Keyword Events"
+  description: "Performance metrics and configuration attributes for Keywords inckluding Floodlight attributes."
   join: keyword_conversion_events {
     view_label: "Keyword Events"
     relationship: one_to_one
@@ -135,5 +139,10 @@ explore: keyword_events {
     relationship: many_to_one
     type: left_outer
     sql_on: ${keyword_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+  }
+  join: floodlight_activity {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${keyword_conversion_events.floodlight_activity_id} = ${floodlight_activity.floodlight_activity_id} ;;
   }
 }

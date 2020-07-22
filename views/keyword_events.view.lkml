@@ -36,61 +36,73 @@ view: keyword_events {
 
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupId ;;
   }
 
   dimension: ad_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adId ;;
   }
 
   dimension: ad_words_conversion_value {
+    description: "Aggregate value of Google Ads conversions."
     type: number
     sql: ${TABLE}.adWordsConversionValue ;;
   }
 
   dimension: ad_words_conversions {
+    description: "The data that the advertiser has set up to be reported in the Google Ads Conversions column. When an Google Ads conversion action is created, the advertiser can choose whether to count those conversions in the Conversions reporting column."
     type: number
     sql: ${TABLE}.adWordsConversions ;;
   }
 
   dimension: ad_words_view_through_conversions {
+    description: "The total number of Google Ads view-through conversions."
     type: number
     sql: ${TABLE}.adWordsViewThroughConversions ;;
   }
 
   dimension: advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.advertiserId ;;
   }
 
   dimension: agency_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.agencyId ;;
   }
 
   dimension: avg_cpc {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgCpc ;;
   }
 
   dimension: avg_cpm {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgCpm ;;
   }
 
   dimension: avg_pos {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgPos ;;
   }
 
   dimension: campaign_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.campaignId ;;
   }
@@ -114,6 +126,7 @@ view: keyword_events {
   }
 
   dimension_group: visit {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -134,6 +147,7 @@ view: keyword_events {
   }
 
   dimension: effective_bid_strategy_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.effectiveBidStrategyId ;;
   }
@@ -145,11 +159,13 @@ view: keyword_events {
   }
 
   dimension: keyword_engine_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.keywordEngineId ;;
   }
 
   dimension: keyword_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.keywordId ;;
   }

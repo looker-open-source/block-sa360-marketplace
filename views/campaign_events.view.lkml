@@ -18,6 +18,7 @@ view: campaign_events {
   }
 
   dimension_group: _latest {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -33,76 +34,91 @@ view: campaign_events {
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_words_conversion_value {
+    hidden: yes
     type: number
     sql: ${TABLE}.adWordsConversionValue ;;
   }
 
   dimension: ad_words_conversions {
+    hidden: yes
     type: number
     sql: ${TABLE}.adWordsConversions ;;
   }
 
   dimension: ad_words_view_through_conversions {
+    hidden: yes
     type: number
     sql: ${TABLE}.adWordsViewThroughConversions ;;
   }
 
   dimension: advertiser_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.advertiserId ;;
   }
 
   dimension: agency_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.agencyId ;;
   }
 
   dimension: avg_cpc {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgCpc ;;
   }
 
   dimension: avg_cpm {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgCpm ;;
   }
 
   dimension: avg_pos {
+    hidden: yes
     type: number
     sql: ${TABLE}.avgPos ;;
   }
 
   dimension: campaign_engine_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.campaignEngineId ;;
   }
 
   dimension: campaign_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.campaignId ;;
   }
 
   dimension: clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost ;;
   }
 
   dimension: ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.ctr ;;
   }
 
   dimension_group: date {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -118,21 +134,25 @@ view: campaign_events {
   }
 
   dimension: device_segment {
+    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
 
   dimension: effective_bid_strategy_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.effectiveBidStrategyId ;;
   }
 
   dimension: impr {
+    hidden: yes
     type: number
     sql: ${TABLE}.impr ;;
   }
 
   dimension: visits {
+    hidden: yes
     type: number
     sql: ${TABLE}.visits ;;
   }
