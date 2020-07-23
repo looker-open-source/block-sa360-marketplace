@@ -140,7 +140,7 @@ view: keyword {
   dimension: keyword_landing_page {
     type: string
     sql: ${TABLE}.keywordLandingPage ;;
-    html: <a href="{{ value }}"><button>Keyword Landing Page</button></a>
+    html: <a href="{{ value }}"><button>Landing Page</button></a>
     ;;
   }
 

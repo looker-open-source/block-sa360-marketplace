@@ -14,7 +14,7 @@ persist_with: block_sa360_default_datagroup
 
 explore: advertiser_events {
   label: "(1) Advertiser Events"
-  description: "Performance metrics across all of an advertiser's engine accounts and campaigns including advertiser configuration attributes."
+  description: "Performance metrics across all of an advertiser's engine accounts and campaigns."
   join: advertiser_conversion_events {
     view_label: "Advertiser Events"
     relationship: one_to_one
@@ -39,7 +39,7 @@ explore: advertiser_events {
 
 explore: campaign_events {
   label: "(2) Campaign Events"
-  description: "Performance metrics and configuration attributes for Campaigns."
+  description: "Performance metrics for Campaigns."
   join: campaign_conversion_events {
     view_label: "Campaign Events"
     relationship: one_to_one
@@ -69,7 +69,7 @@ explore: campaign_events {
 
 explore: ad_group_events {
   label: "(3) Ad Group Events"
-  description: "Performance metrics and configuration attributes for Ad Groups."
+  description: "Performance metrics for Ad Groups."
   join: ad_group_conversion_events {
     view_label: "Ad Group Events"
     relationship: one_to_one
@@ -104,7 +104,7 @@ explore: ad_group_events {
 
 explore: keyword_events {
   label: "(4) Keyword Events"
-  description: "Performance metrics and configuration attributes for Keywords inckluding Floodlight attributes."
+  description: "Performance metrics for Keywords including Floodlight attributes."
   join: keyword_conversion_events {
     view_label: "Keyword Events"
     relationship: one_to_one
@@ -148,6 +148,7 @@ explore: keyword_events {
 }
 
 explore: product_events {
+  description: "Performance metrics for products defined in an inventory feed and advertised in a shopping campaign."
   join: product_conversion_events {
     view_label: "Product Events"
     relationship: one_to_one
