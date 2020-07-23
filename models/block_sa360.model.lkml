@@ -31,7 +31,7 @@ explore: advertiser_events {
   }
   join: account {
     view_label: "Advertiser"
-    relationship: one_to_many
+    relationship: many_to_one
     type: left_outer
     sql_on: ${account.advertiser_id} = ${advertiser.advertiser_id} ;;
   }
@@ -50,7 +50,7 @@ explore: campaign_events {
   }
   join: account {
     view_label: "Campaign Events"
-    relationship: one_to_one
+    relationship: many_to_one
     type: left_outer
     sql_on: ${account.account_id} = ${campaign_events.account_id} ;;
   }
@@ -80,7 +80,7 @@ explore: ad_group_events {
   }
   join: account {
     view_label: "Ad Group Events"
-    relationship: one_to_one
+    relationship: many_to_one
     type: left_outer
     sql_on: ${account.account_id} = ${ad_group_events.account_id} ;;
   }
@@ -115,7 +115,7 @@ explore: keyword_events {
   }
   join: account {
     view_label: "Keyword Events"
-    relationship: one_to_one
+    relationship: many_to_one
     type: left_outer
     sql_on: ${account.account_id} = ${keyword_events.account_id} ;;
   }
@@ -155,6 +155,12 @@ explore: product_events {
     sql_on: ${product_conversion_events.product_id} = ${product_events.product_id}
             AND ${product_conversion_events._data_date} = ${product_events._data_date}
             AND ${product_conversion_events.device_segment} = ${product_events.device_segment};;
+  }
+  join: account {
+    view_label: "Product Events"
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${account.account_id} = ${product_conversion_events.account_id} ;;
   }
   join: product {
     relationship: many_to_one

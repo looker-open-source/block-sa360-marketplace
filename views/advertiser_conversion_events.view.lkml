@@ -155,4 +155,11 @@ view: advertiser_conversion_events {
     value_format_name: usd
     sql: ${advertiser_events.total_cost}*1.0/NULLIF(${total_actions},0) ;;
   }
+
+  measure: conversion_rate {
+    description: "Conversions divided by Impressions"
+    type: number
+    value_format_name: percent_2
+    sql: 1.0 * ${total_actions} / NULLIF(${advertiser_events.total_impressions},0) - 1  ;;
+  }
 }
