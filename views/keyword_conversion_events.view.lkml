@@ -215,39 +215,34 @@ view: keyword_conversion_events {
 
 
 ###################### Dynamic Measure ######################
-#   parameter: select_measure {
-#     hidden: yes
-#     type: string
-#     allowed_value: {label: "Auctions" value: "Auctions"}
-#     allowed_value: {label: "Auctions Cleared" value: "Auctions Cleared"}
-#     allowed_value: {label: "Auctions per Unique" value: "Auctions per Unique"}
-#     allowed_value: {label: "Auctions w/ Bids" value: "Auctions w/ Bids"}
-#   }
-#   measure: dynamic_measure {
-#     hidden: yes
-#     label_from_parameter: select_measure
-#     type: number
-#     sql:
-#       {% if select_measure._parameter_value == "'Auctions'" %}
-#         ${auctions}
-#       {% elsif select_measure._parameter_value == "'Auctions Cleared'" %}
-#         ${cleared}
-#       {% elsif select_measure._parameter_value == "'Auctions per Unique'" %}
-#         ${auctions_per_unique}
-#       {% else %}
-#         ${auctions_with_bids}
-#       {% endif %};;
-#     link: {
-#       label: "Click to Drill"
-#       url: "{% if select_measure._parameter_value == 'Auctions' %} {{ auctions._link }}
-#       {% elsif select_measure._parameter_value == 'Auctions Cleared' %} {{ cleared._link }}
-#       {% elsif select_measure._parameter_value == 'Auctions per Unique' %} {{ auctions_per_unique._link }}
-#       {% else %} {{ auctions_with_bids._link }}
-#       {% endif %}"
-#     }
-#   }
+  parameter: select_measure {
+    view_label: "Dynamic Measure"
+    type: string
+    allowed_value: {label: "Total Actions" value: "Total Actions"}
+    allowed_value: {label: "Total Transactions" value: "Total Transactions"}
+    allowed_value: {label: "Total Conversions" value: "Total Conversions"}
 
-
+  }
+  measure: dynamic_measure {
+    view_label: "Dynamic Measure"
+    label_from_parameter: select_measure
+    type: number
+    sql:
+      {% if select_measure._parameter_value == "'Total Actions'" %}
+        ${total_actions}
+      {% elsif select_measure._parameter_value == "'Total Transactions'" %}
+        ${total_transactions}
+      {% else %}
+        ${total_conversions}
+      {% endif %};;
+    link: {
+      label: "Click to Drill"
+      url: "{% if select_measure._parameter_value == 'Total Actions' %} {{ total_actions._link }}
+      {% elsif select_measure._parameter_value == 'Total Transactions' %} {{ total_transactions._link }}
+      {% else %} {{ total_conversions._link }}
+      {% endif %}"
+    }
+  }
 ###################### Close - Dynamic Measure ######################
 
 
@@ -258,18 +253,21 @@ view: keyword_conversion_events {
     description: "The total number of Campaign manager actions."
     type: sum
     sql: ${dfa_actions} ;;
+    drill_fields: [_data_date,total_actions]
   }
 
   measure: total_transactions {
     description: "The total number of Campaign manager transactions."
     type: sum
     sql: ${dfa_transactions} ;;
+    drill_fields: [_data_date,total_transactions]
   }
 
   measure: total_conversions {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
+    drill_fields: [_data_date,total_conversions]
   }
 
    ##### Keyword Conversion Metrics #####
