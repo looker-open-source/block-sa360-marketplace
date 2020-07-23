@@ -10,8 +10,11 @@ view: ad_group_events {
       date,
       week,
       month,
+      month_name,
       quarter,
-      year
+      year,
+      day_of_week,
+      time_of_day
     ]
     convert_tz: no
     datatype: datetime
