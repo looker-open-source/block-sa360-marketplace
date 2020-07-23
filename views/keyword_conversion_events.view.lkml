@@ -251,6 +251,4 @@ view: keyword_conversion_events {
     value_format_name: percent_2
     sql: 1.0 * ${total_actions} / NULLIF(${keyword_events.total_clicks},0)  ;;
   }
-
-
   }
