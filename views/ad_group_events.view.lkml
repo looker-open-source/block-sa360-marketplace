@@ -213,9 +213,8 @@ view: ad_group_events {
 
   #this parameter allows users to select the metric they want to look at
   parameter: metric_selector {
-    view_label: "Ad Group Events"
     description: "Use this filter to toggle between what metric matters most to your business"
-    type: unquoted
+    type: string
     allowed_value: {
       label: "Clicks"
       value: "total_clicks"
