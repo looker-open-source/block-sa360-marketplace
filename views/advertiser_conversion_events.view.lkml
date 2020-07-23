@@ -115,21 +115,22 @@ view: advertiser_conversion_events {
     sql: ${TABLE}.floodlightGroupId ;;
   }
 
-  ##### Keyword Standard Metric Aggregates #####
+  ##### Advertiser Standard Metric Aggregates #####
 
   measure: total_actions {
     type: sum
     sql: ${dfa_actions} ;;
   }
 
-  measure: total_weighted_actions {
-    type: sum
-    sql: ${dfa_weighted_actions} ;;
-  }
-
   measure: total_transactions {
     type: sum
     sql: ${dfa_transactions} ;;
+  }
+
+  measure: total_conversions {
+    description: "Sum of Dfa Actions and Dfa Transactions"
+    type: number
+    sql: ${total_actions} + ${total_transactions} ;;
   }
 
   ##### Keyword Conversion Metrics #####
@@ -145,7 +146,7 @@ view: advertiser_conversion_events {
     description: "Associated revenue divided by the total cost"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_events.total_cost},0) - 1 ;;
+    sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_events.total_cost},0) ;;
   }
 
   measure: cost_per_acquisition {
@@ -153,13 +154,13 @@ view: advertiser_conversion_events {
     description: "Average cost per conversion"
     type: number
     value_format_name: usd
-    sql: ${advertiser_events.total_cost}*1.0/NULLIF(${total_actions},0) ;;
+    sql: ${advertiser_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
   }
 
   measure: conversion_rate {
-    description: "Conversions divided by Impressions"
+    description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${advertiser_events.total_impressions},0) - 1  ;;
+    sql: 1.0 * ${total_actions} / NULLIF(${advertiser_events.total_clicks},0)  ;;
   }
 }
