@@ -34,16 +34,19 @@ view: ad_group_events {
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_group_engine_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupEngineId ;;
   }
 
   dimension: ad_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupId ;;
   }
@@ -97,7 +100,6 @@ view: ad_group_events {
   }
 
   dimension: campaign_id {
-    hidden: yes
     type: string
     sql: ${TABLE}.campaignId ;;
   }
@@ -137,6 +139,7 @@ view: ad_group_events {
   }
 
   dimension: device_segment {
+    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }

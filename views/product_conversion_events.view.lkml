@@ -35,11 +35,13 @@ view: product_conversion_events {
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.adGroupId ;;
   }
@@ -57,6 +59,7 @@ view: product_conversion_events {
   }
 
   dimension: campaign_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.campaignId ;;
   }
@@ -78,42 +81,48 @@ view: product_conversion_events {
   }
 
   dimension: device_segment {
-    hidden:  yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
 
   dimension: dfa_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaActions ;;
   }
 
   dimension: dfa_revenue {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaRevenue ;;
   }
 
   dimension: dfa_transactions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaTransactions ;;
   }
 
   dimension: dfa_weighted_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.dfaWeightedActions ;;
   }
 
   dimension: floodlight_activity_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.floodlightActivityId ;;
   }
 
   dimension: floodlight_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.floodlightGroupId ;;
   }
 
   dimension: product_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.productId ;;
   }

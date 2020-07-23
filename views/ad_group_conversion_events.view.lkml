@@ -87,7 +87,6 @@ view: ad_group_conversion_events {
   }
 
   dimension: device_segment {
-    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
@@ -123,11 +122,13 @@ view: ad_group_conversion_events {
   }
 
   dimension: floodlight_activity_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.floodlightActivityId ;;
   }
 
   dimension: floodlight_group_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.floodlightGroupId ;;
   }

@@ -88,7 +88,6 @@ view: keyword_conversion_events {
   }
 
   dimension: device_segment {
-    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
