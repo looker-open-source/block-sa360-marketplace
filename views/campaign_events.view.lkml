@@ -177,7 +177,7 @@ view: campaign_events {
   measure: total_cost {
     label: "Total Spend (Search Clicks)"
     type: sum
-    value_format_name: usd
+    value_format_name: usd_0
     sql: ${cost} ;;
   }
 
