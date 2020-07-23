@@ -3,6 +3,7 @@ view: ad_group_events {
     ;;
 
   dimension_group: _data {
+    hidden: yes
     type: time
     timeframes: [
       raw,
