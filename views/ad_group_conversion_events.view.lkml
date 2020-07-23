@@ -159,7 +159,7 @@ view: ad_group_conversion_events {
     sql: ${dfa_revenue} ;;
   }
 
-  measure: ROAS {
+  measure: roas {
     label: "Percent ROAS"
     description: "Associated revenue divided by the total cost"
     type: number
