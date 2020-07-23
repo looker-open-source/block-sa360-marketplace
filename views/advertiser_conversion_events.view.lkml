@@ -137,7 +137,7 @@ view: advertiser_conversion_events {
 
   measure: total_revenue {
     type: sum
-    value_format_name: usd
+    value_format_name: usd_0
     sql: ${dfa_revenue} ;;
   }
 
@@ -145,7 +145,7 @@ view: advertiser_conversion_events {
     label: "Percent ROAS"
     description: "Associated revenue divided by the total cost"
     type: number
-    value_format_name: percent_2
+    value_format_name: percent_0
     sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_events.total_cost},0) ;;
   }
 
