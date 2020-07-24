@@ -179,13 +179,13 @@ view: campaign_conversion_events {
 
 ###################### Period over Period Reporting Metrics ######################
 
-  filter: first_period_filter {
+  filter: this_period_filter {
     view_label: "Period over Period"
     group_label: "Arbitrary Period Comparisons"
     type: date
   }
 
-  filter: second_period_filter {
+  filter: prior_period_filter {
     view_label: "Period over Period"
     group_label: "Arbitrary Period Comparisons"
     type: date
@@ -195,14 +195,14 @@ view: campaign_conversion_events {
     view_label: "Period over Period"
     hidden: yes
     type: number
-    sql: DATE_DIFF( ${_data_raw}, CAST({% date_start first_period_filter %} AS DATE), DAY) ;;
+    sql: DATE_DIFF( ${_data_raw}, CAST({% date_start this_period_filter %} AS DATE), DAY) ;;
   }
 
   dimension: days_from_start_second {
     view_label: "Period over Period"
     hidden: yes
     type: number
-    sql: DATE_DIFF(${_data_raw}, CAST({% date_start second_period_filter %} AS DATE), DAY) ;;
+    sql: DATE_DIFF(${_data_raw}, CAST({% date_start prior_period_filter %} AS DATE), DAY) ;;
   }
 
   dimension: days_from_period_start {
@@ -222,12 +222,12 @@ view: campaign_conversion_events {
     type: string
     sql:
         CASE
-          WHEN ${_data_raw} >=  DATE({% date_start first_period_filter %})
-          AND ${_data_raw} <= DATE({% date_end first_period_filter %})
-          THEN 'First Period'
-          WHEN ${_data_raw} >=  DATE({% date_start second_period_filter %})
-          AND ${_data_raw} <= DATE({% date_end second_period_filter %})
-          THEN 'Second Period'
+          WHEN ${_data_raw} >=  DATE({% date_start this_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end this_period_filter %})
+          THEN 'This Period'
+          WHEN ${_data_raw} >=  DATE({% date_start prior_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end prior_period_filter %})
+          THEN 'Prior Period'
           END ;;
   }
 ###################### Close - Period over Period Reporting Metrics ######################
