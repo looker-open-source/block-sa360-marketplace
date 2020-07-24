@@ -14,7 +14,8 @@ view: ad_group_conversion_events {
       quarter,
       year,
       day_of_week,
-      time_of_day
+      time_of_day,
+      hour_of_day
     ]
     convert_tz: no
     datatype: date
