@@ -176,5 +176,60 @@ view: product_conversion_events {
     sql: 1.0 * ${total_actions} / NULLIF(${product_events.total_clicks},0)  ;;
   }
 
+###################### Period over Period Reporting Metrics ######################
+
+  filter: first_period_filter {
+    view_label: "Period over Period"
+    group_label: "Arbitrary Period Comparisons"
+    type: date
+  }
+
+  filter: second_period_filter {
+    view_label: "Period over Period"
+    group_label: "Arbitrary Period Comparisons"
+    type: date
+  }
+
+  dimension: days_from_start_first {
+    view_label: "Period over Period"
+    hidden: yes
+    type: number
+    sql: DATE_DIFF( ${_data_raw}, CAST({% date_start first_period_filter %} AS DATE), DAY) ;;
+  }
+
+  dimension: days_from_start_second {
+    view_label: "Period over Period"
+    hidden: yes
+    type: number
+    sql: DATE_DIFF(${_data_raw}, CAST({% date_start second_period_filter %} AS DATE), DAY) ;;
+  }
+
+  dimension: days_from_period_start {
+    view_label: "Period over Period"
+    type: number
+    sql:
+      CASE
+       WHEN ${days_from_start_first} >= 0
+       THEN ${days_from_start_first}
+       WHEN ${days_from_start_second} >= 0
+       THEN ${days_from_start_second}
+      END;;
+  }
+
+  dimension: period_selected {
+    view_label: "Period over Period"
+    type: string
+    sql:
+        CASE
+          WHEN ${_data_raw} >=  DATE({% date_start first_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end first_period_filter %})
+          THEN 'First Period'
+          WHEN ${_data_raw} >=  DATE({% date_start second_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end second_period_filter %})
+          THEN 'Second Period'
+          END ;;
+  }
+###################### Close - Period over Period Reporting Metrics ######################
+
 
 }
