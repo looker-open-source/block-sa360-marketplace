@@ -158,7 +158,7 @@ view: campaign_conversion_events {
   }
 
   measure: ROAS {
-    label: "Percent ROAS"
+    label: "ROAS as a Percentage"
     description: "Associated revenue divided by the total cost"
     type: number
     value_format_name: percent_0

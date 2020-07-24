@@ -2,6 +2,11 @@ view: account {
   sql_table_name: `SA360.Account_21700000000010391`
     ;;
 
+  dimension: account_composite_key {
+    primary_key: yes
+    sql: ${account_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     hidden: yes
     type: time

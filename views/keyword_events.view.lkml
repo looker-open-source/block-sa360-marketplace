@@ -2,9 +2,29 @@ view: keyword_events {
   sql_table_name: `SA360.KeywordDeviceStats_21700000000010391`
     ;;
 
-  dimension: composite_key {
-    primary_key: yes
+  dimension: keyword_composite_key {
+    hidden: yes
     sql: ${keyword_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: ad_group_composite_key {
+    hidden: yes
+    sql: ${ad_group_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: campaign_composite_key {
+    hidden: yes
+    sql: ${campaign_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: advertiser_composite_key {
+    hidden: yes
+    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: account_composite_key {
+    hidden: yes
+    sql: ${account_id} || ' ' || ${_data_date} ;;
   }
 
   dimension_group: _data {

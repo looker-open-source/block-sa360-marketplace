@@ -2,6 +2,11 @@ view: campaign {
   sql_table_name: `SA360.Campaign_21700000000010391`
     ;;
 
+  dimension: campaign_composite_key {
+    primary_key: yes
+    sql: ${campaign_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     type: time
     timeframes: [
@@ -72,7 +77,7 @@ view: campaign {
     type: string
     sql: ${TABLE}.campaign ;;
     link: {
-      url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/27?Campaign={{value}}"
+      url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/31?Campaign={{value}}"
       label: "Campaign Performance Dashboard"
     }
   }

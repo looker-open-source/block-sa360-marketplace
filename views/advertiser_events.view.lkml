@@ -2,6 +2,16 @@ view: advertiser_events {
   sql_table_name: `SA360.AdvertiserDeviceStats_21700000000010391`
     ;;
 
+  dimension: advertiser_composite_key {
+    hidden: yes
+    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
+  }
+
+#   dimension: account_composite_key {
+#     hidden: yes
+#     sql: ${account_id} || ' ' || ${_data_date} ;;
+#   }
+
   dimension_group: _data {
     type: time
     timeframes: [

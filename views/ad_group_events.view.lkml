@@ -2,6 +2,26 @@ view: ad_group_events {
   sql_table_name: `SA360.AdGroupDeviceStats_21700000000010391`
     ;;
 
+  dimension: ad_group_composite_key {
+    hidden: yes
+    sql: ${ad_group_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: campaign_composite_key {
+    hidden: yes
+    sql: ${campaign_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: advertiser_composite_key {
+    hidden: yes
+    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: account_composite_key {
+    hidden: yes
+    sql: ${account_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     hidden: yes
     type: time

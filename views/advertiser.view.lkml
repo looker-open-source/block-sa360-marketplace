@@ -2,6 +2,11 @@ view: advertiser {
   sql_table_name: `SA360.Advertiser_21700000000010391`
     ;;
 
+  dimension: advertiser_composite_key {
+    primary_key: yes
+    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     hidden: yes
     type: time

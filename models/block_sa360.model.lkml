@@ -21,11 +21,17 @@ explore: advertiser_events {
             AND ${advertiser_events._data_date} = ${advertiser_conversion_events._data_date}
             AND ${advertiser_events.device_segment} = ${advertiser_conversion_events.device_segment};;
   }
+#   join: account {
+#     view_label: "Ad Group Events"
+#     relationship: one_to_one
+#     type: left_outer
+#     sql_on: ${campaign_events.account_composite_key} = ${account.account_composite_key} ;;
+#   }
   # Join Dimensional Tables
   join: advertiser {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${advertiser_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${advertiser.advertiser_composite_key} = ${advertiser.advertiser_composite_key} ;;
   }
   join: account {
     view_label: "Advertiser"
@@ -47,21 +53,21 @@ explore: campaign_events {
             AND ${campaign_events.device_segment} = ${campaign_conversion_events.device_segment};;
   }
   join: account {
-    view_label: "Campaign Events"
-    relationship: many_to_one
+    view_label: "Ad Group Events"
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${account.account_id} = ${campaign_events.account_id} ;;
+    sql_on: ${campaign_events.account_composite_key} = ${account.account_composite_key} ;;
   }
   # Join Dimensional Tables
   join: campaign {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${campaign_events.campaign_id} = ${campaign.campaign_id} ;;
+    sql_on: ${campaign_events.campaign_composite_key} = ${campaign.campaign_composite_key} ;;
   }
   join: advertiser {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${campaign_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${campaign_events.advertiser_composite_key} = ${advertiser.advertiser_composite_key} ;;
   }
 }
 
@@ -78,25 +84,25 @@ explore: ad_group_events {
   }
   join: account {
     view_label: "Ad Group Events"
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${account.account_id} = ${ad_group_events.account_id} ;;
+    sql_on: ${ad_group_events.account_composite_key} = ${account.account_composite_key} ;;
   }
   # Join Dimensional Tables
   join: ad_group {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${ad_group_events.ad_group_id} = ${ad_group.ad_group_id} ;;
+    sql_on: ${ad_group_events.ad_group_composite_key} = ${ad_group.ad_group_composite_key} ;;
   }
   join: campaign {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${ad_group_events.campaign_id} = ${campaign.campaign_id} ;;
+    sql_on: ${ad_group_events.campaign_composite_key} = ${campaign.campaign_composite_key} ;;
   }
   join: advertiser {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${ad_group_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${ad_group_events.advertiser_composite_key} = ${advertiser.advertiser_composite_key} ;;
   }
 }
 
@@ -115,37 +121,32 @@ explore: keyword_events {
             AND ${keyword_events.ad_id} = ${keyword_conversion_events.ad_id}
             AND ${keyword_events.ad_group_id} = ${keyword_conversion_events.ad_group_id};;
   }
+  # Join Dimensional Tables
   join: account {
     view_label: "Keyword Events"
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${account.account_id} = ${keyword_events.account_id} ;;
+    sql_on: ${account.account_composite_key} = ${keyword_events.account_composite_key} ;;
   }
-  # Join Dimensional Tables
-#   join: keyword {
-#     relationship: many_to_one
-#     type: left_outer
-#     sql_on: ${keyword_events.keyword_id} = ${keyword.keyword_id} ;;
-#   }
   join: keyword {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${keyword_events.composite_key} = ${keyword.composite_key} ;;
+    sql_on: ${keyword_events.keyword_composite_key} = ${keyword.keyword_composite_key} ;;
   }
   join: ad_group {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${keyword_events.ad_group_id} = ${ad_group.ad_group_id} ;;
+    sql_on: ${keyword_events.ad_group_composite_key} = ${ad_group.ad_group_composite_key} ;;
   }
   join: campaign {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${keyword_events.campaign_id} = ${campaign.campaign_id} ;;
+    sql_on: ${keyword_events.campaign_composite_key} = ${campaign.campaign_composite_key} ;;
   }
   join: advertiser {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${keyword_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${keyword_events.advertiser_composite_key} = ${advertiser.advertiser_composite_key} ;;
   }
   join: floodlight_activity {
     relationship: many_to_one
