@@ -21,23 +21,11 @@ explore: advertiser_events {
             AND ${advertiser_events._data_date} = ${advertiser_conversion_events._data_date}
             AND ${advertiser_events.device_segment} = ${advertiser_conversion_events.device_segment};;
   }
-#   join: account {
-#     view_label: "Ad Group Events"
-#     relationship: one_to_one
-#     type: left_outer
-#     sql_on: ${campaign_events.account_composite_key} = ${account.account_composite_key} ;;
-#   }
   # Join Dimensional Tables
   join: advertiser {
     relationship: one_to_one
     type: left_outer
-    sql_on: ${advertiser.advertiser_composite_key} = ${advertiser.advertiser_composite_key} ;;
-  }
-  join: account {
-    view_label: "Advertiser"
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${account.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${advertiser.advertiser_composite_key} = ${advertiser_events.advertiser_composite_key} ;;
   }
 }
 
