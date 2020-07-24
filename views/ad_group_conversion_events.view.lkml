@@ -152,7 +152,7 @@ view: ad_group_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
-    drill_fields: [campaign.campaign, campaign.campaign_start, campaign.campaign_end, total_conversions, cost_per_acquisition]
+    drill_fields: [ad_group.ad_group, total_conversions, cost_per_acquisition, total_actions, total_transactions]
   }
 
   ##### Ad Group Conversion Metrics #####
@@ -169,6 +169,7 @@ view: ad_group_conversion_events {
     type: number
     value_format_name: percent_0
     sql: 1.0 * ${total_revenue} / NULLIF(${ad_group_events.total_cost},0)  ;;
+    drill_fields: [ad_group.ad_group, roas, total_revenue, ad_group_events.total_cost]
   }
 
   measure: cost_per_acquisition {
@@ -177,6 +178,7 @@ view: ad_group_conversion_events {
     type: number
     value_format_name: usd
     sql: ${ad_group_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
+    drill_fields: [ad_group.ad_group, cost_per_acquisition, ad_group_events.total_cost, total_conversions]
   }
 
   measure: conversion_rate {
@@ -184,6 +186,7 @@ view: ad_group_conversion_events {
     type: number
     value_format_name: percent_2
     sql: 1.0 * ${total_actions} / NULLIF(${ad_group_events.total_clicks},0)  ;;
+    drill_fields: [ad_group.ad_group, conversion_rate, total_actions, ad_group_events.total_clicks]
   }
 
 ###################### Period over Period Reporting Metrics ######################

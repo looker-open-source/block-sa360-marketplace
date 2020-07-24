@@ -144,6 +144,8 @@ view: campaign_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
+    drill_fields: [campaign.campaign, total_conversions, cost_per_acquisition]
+
   }
 
   ##### Campaign Conversion Metrics #####
@@ -160,6 +162,7 @@ view: campaign_conversion_events {
     type: number
     value_format_name: percent_0
     sql: 1.0 * ${total_revenue} / NULLIF(${campaign_events.total_cost},0) ;;
+    drill_fields: [campaign.campaign, ROAS, total_revenue, campaign.total_cost]
   }
 
   measure: cost_per_acquisition {
