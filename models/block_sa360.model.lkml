@@ -10,17 +10,17 @@ datagroup: block_sa360_default_datagroup {
 
 persist_with: block_sa360_default_datagroup
 
-explore: keyword_test {
-  from: keyword_conversion_events
-  join: keyword_events {
-    view_label: "Keyword Events"
-    relationship: one_to_one
-    type: left_outer
-    sql_on: ${keyword_test.keyword_id} = ${keyword_events.keyword_id}
-            AND ${keyword_test._data_date} = ${keyword_events._data_date}
-            AND ${keyword_test.device_segment} = ${keyword_events.device_segment};;
-  }
-}
+# explore: keyword_test {
+#   from: keyword_conversion_events
+#   join: keyword_events {
+#     view_label: "Keyword Events"
+#     relationship: one_to_one
+#     type: left_outer
+#     sql_on: ${keyword_test.keyword_id} = ${keyword_events.keyword_id}
+#             AND ${keyword_test._data_date} = ${keyword_events._data_date}
+#             AND ${keyword_test.device_segment} = ${keyword_events.device_segment};;
+#   }
+# }
 
 explore: advertiser_events {
   label: "(1) Advertiser Events"

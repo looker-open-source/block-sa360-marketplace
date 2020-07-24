@@ -225,6 +225,51 @@ view: keyword_events {
     sql: ${total_cost}* 1.0/ NULLIF(${total_clicks},0) ;;
     value_format_name: usd
   }
+  #this parameter allows users to select the metric they want to look at
+  parameter: metric_selector {
+    description: "Use this filter to toggle between what metric matters most to your business"
+    type: string
+    allowed_value: {
+      label: "Clicks"
+      value: "total_clicks"
+    }
+    allowed_value: {
+      label: "Conversions"
+      value: "total_conversions"
+    }
+    allowed_value: {
+      label: "Conversion Rate"
+      value: "conversion_rate"
+    }
+    allowed_value: {
+      label: "CTR"
+      value: "click_through_rate"
+    }
+    allowed_value: {
+      label: "ROAS"
+      value: "roas"
+    }
+  }
+
+  #this field can be used with the metric selector filter
+  measure: metric {
+    label_from_parameter: metric_selector
+    type: number
+    sql:
+    CASE
+      WHEN {% parameter metric_selector %} = 'total_clicks'
+        THEN ${total_clicks}
+      WHEN {% parameter metric_selector %} = 'total_conversions'
+        THEN ${keyword_conversion_events.total_conversions}
+      WHEN {% parameter metric_selector %} = 'conversion_rate'
+        THEN ${keyword_conversion_events.conversion_rate}
+      WHEN {% parameter metric_selector %} = 'click_through_rate'
+        THEN ${click_through_rate}
+      WHEN {% parameter metric_selector %} = 'roas'
+        THEN ${keyword_conversion_events.ROAS}
+      ELSE NULL
+    END ;;
+  }
 
 
 }
