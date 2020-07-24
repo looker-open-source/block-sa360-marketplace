@@ -171,11 +171,13 @@ view: ad_group_events {
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
+    drill_fields: [ad_group.adgroup, total_impressions]
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
+    drill_fields: [ad_group.adgroup, total_clicks]
   }
 
   measure: total_visits {
@@ -188,6 +190,7 @@ view: ad_group_events {
     type: sum
     value_format_name: usd_0
     sql: ${cost} ;;
+    drill_fields: [ad_group.ad_group,  total_clicks, total_cost, ad_group_conversion_events.total_revenue]
   }
 
   measure: total_cumulative_spend {
@@ -204,6 +207,7 @@ view: ad_group_events {
     type: number
     value_format_name: percent_2
     sql: ${total_clicks}*1.0/NULLIF(${total_impressions},0);;
+    drill_fields: [ad_group.ad_group, total_clicks, total_impressions]
   }
 
   measure: cost_per_click {
@@ -212,6 +216,7 @@ view: ad_group_events {
     type: number
     sql: ${total_cost}* 1.0/ NULLIF(${total_clicks},0) ;;
     value_format_name: usd
+    drill_fields: [ad_group.ad_group, total_cost, total_clicks]
   }
 
   #this parameter allows users to select the metric they want to look at
