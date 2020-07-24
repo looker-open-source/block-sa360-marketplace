@@ -150,11 +150,13 @@ view: product_events {
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
+    drill_fields: [campaign.campaign, total_impressions, total_clicks]
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
+    drill_fields: [campaign.campaign, total_clicks, product_conversion_events.total_conversions]
   }
 
   measure: total_visits {
@@ -167,6 +169,7 @@ view: product_events {
     type: sum
     value_format_name: usd
     sql: ${cost} ;;
+    drill_fields: [campaign.campaign, total_cost, product_conversion_events.total_revenue, product_conversion_events.ROAS]
   }
 
   measure: total_cumulative_spend {
@@ -183,6 +186,7 @@ view: product_events {
     type: number
     value_format_name: percent_2
     sql: ${total_clicks}*1.0/NULLIF(${total_impressions},0);;
+    drill_fields: [campaign.campaign, click_through_rate, total_clicks, total_impressions]
   }
 
   measure: cost_per_click {
@@ -191,5 +195,6 @@ view: product_events {
     type: number
     sql: ${total_cost}* 1.0/ NULLIF(${total_clicks},0) ;;
     value_format_name: usd
+    drill_fields: [campaign.campaign, cost_per_click, total_cost, total_clicks]
   }
 }

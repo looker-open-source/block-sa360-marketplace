@@ -208,13 +208,13 @@ view: keyword_events {
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
-    drill_fields: [keyword.keyword, _data_date, total_impressions]
+    drill_fields: [keyword.keyword_text, _data_date, total_impressions]
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
-    drill_fields: [_data_date, keyword.keyword, total_clicks]
+    drill_fields: [_data_date, keyword.keyword_text, total_clicks]
   }
 
   measure: total_visits {
@@ -227,7 +227,7 @@ view: keyword_events {
     type: sum
     value_format_name: usd_0
     sql: ${cost} ;;
-    drill_fields: [_data_date, keyword.keyword, total_cost]
+    drill_fields: [_data_date, keyword.keyword_text, total_cost]
   }
 
   measure: total_cumulative_spend {
@@ -244,7 +244,7 @@ view: keyword_events {
     type: number
     value_format_name: percent_2
     sql: ${total_clicks}*1.0/NULLIF(${total_impressions},0);;
-    drill_fields: [_data_date, keyword.keyword, click_through_rate, total_clicks, total_impressions]
+    drill_fields: [_data_date, keyword.keyword_text, click_through_rate, total_clicks, total_impressions]
   }
 
   measure: cost_per_click {
@@ -253,7 +253,7 @@ view: keyword_events {
     type: number
     sql: ${total_cost}* 1.0/ NULLIF(${total_clicks},0) ;;
     value_format_name: usd
-    drill_fields: [_data_date, keyword.keyword, cost_per_click, total_cost, total_clicks]
+    drill_fields: [_data_date, keyword.keyword_text, cost_per_click, total_cost, total_clicks]
   }
   #this parameter allows users to select the metric they want to look at
   parameter: metric_selector {

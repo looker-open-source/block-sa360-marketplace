@@ -143,6 +143,7 @@ view: product_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
+    drill_fields: [campaign.campaign, total_conversions, total_actions, total_transactions]
   }
 
   ##### Product Conversion Metrics #####
@@ -151,6 +152,7 @@ view: product_conversion_events {
     type: sum
     value_format_name: usd_0
     sql: ${dfa_revenue} ;;
+    drill_fields: [campaign.campaign, total_revenue, product_events.total_cost, cost_per_acquisition]
   }
 
   measure: ROAS {
@@ -159,6 +161,7 @@ view: product_conversion_events {
     type: number
     value_format_name: percent_0
     sql: 1.0 * ${total_revenue} / NULLIF(${product_events.total_cost},0) ;;
+    drill_fields: [campaign.campaign, ROAS, total_revenue, product_events.total_cost]
   }
 
   measure: cost_per_acquisition {
@@ -167,6 +170,7 @@ view: product_conversion_events {
     type: number
     value_format_name: usd
     sql: ${product_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
+    drill_fields: [campaign.campaign, cost_per_acquisition, product_events.total_cost, total_conversions]
   }
 
   measure: conversion_rate {
@@ -174,6 +178,7 @@ view: product_conversion_events {
     type: number
     value_format_name: percent_2
     sql: 1.0 * ${total_actions} / NULLIF(${product_events.total_clicks},0)  ;;
+    drill_fields: [campaign.campaign, conversion_rate, total_actions, product_events.total_clicks]
   }
 
 ###################### Period over Period Reporting Metrics ######################

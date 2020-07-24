@@ -166,7 +166,7 @@ view: keyword_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
-    drill_fields: [_data_date, keyword.keyword, total_conversions]
+    drill_fields: [_data_date, keyword.keyword_text, total_conversions]
   }
 
   ##### Keyword Conversion Metrics #####
@@ -176,7 +176,7 @@ view: keyword_conversion_events {
     type: sum
     value_format_name: usd_0
     sql: ${dfa_revenue} ;;
-    drill_fields: [_data_date, keyword.keyword, total_revenue]
+    drill_fields: [_data_date, keyword.keyword_text, total_revenue]
   }
 
   measure: ROAS {
@@ -185,7 +185,7 @@ view: keyword_conversion_events {
     type: number
     value_format_name: percent_0
     sql: 1.0 * ${total_revenue} / NULLIF(${keyword_events.total_cost},0)  ;;
-    drill_fields: [_data_date, keyword.keyword, ROAS, total_revenue, keyword_events.total_cost]
+    drill_fields: [_data_date, keyword.keyword_text, ROAS, total_revenue, keyword_events.total_cost]
   }
 
   measure: cost_per_acquisition {
@@ -194,7 +194,7 @@ view: keyword_conversion_events {
     type: number
     value_format_name: usd
     sql: ${keyword_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
-    drill_fields: [_data_date, keyword.keyword, cost_per_acquisition, keyword_events.total_cost, total_conversions]
+    drill_fields: [_data_date, keyword.keyword_text, cost_per_acquisition, keyword_events.total_cost, total_conversions]
   }
 
   measure: conversion_rate {
@@ -202,7 +202,7 @@ view: keyword_conversion_events {
     type: number
     value_format_name: percent_2
     sql: 1.0 * ${total_actions} / NULLIF(${keyword_events.total_clicks},0)  ;;
-    drill_fields: [_data_date, keyword.keyword, conversion_rate, total_actions, keyword_events.total_clicks]
+    drill_fields: [_data_date, keyword.keyword_text, conversion_rate, total_actions, keyword_events.total_clicks]
   }
 
 ###################### Dynamic Measure ######################
