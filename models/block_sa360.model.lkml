@@ -101,8 +101,6 @@ explore: keyword_events {
   view_label: "Keyword Events"
     relationship: one_to_one
     type: full_outer
-#     sql_where: {% condition keyword_conversion_events.timeframe_a %} ${keyword_conversion_events._data_raw} {% endcondition %}
-#                OR {% condition keyword_conversion_events.timeframe_b %} ${keyword_conversion_events._data_raw} {% endcondition %} ;;
     sql_on: ${keyword_events.keyword_id} = ${keyword_conversion_events.keyword_id}
             AND ${keyword_events._data_date} = ${keyword_conversion_events._data_date}
             AND ${keyword_events.device_segment} = ${keyword_conversion_events.device_segment}

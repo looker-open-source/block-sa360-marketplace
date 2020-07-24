@@ -7,10 +7,6 @@ view: advertiser_events {
     sql: ${advertiser_id} || ' ' || ${_data_date} ;;
   }
 
-#   dimension: account_composite_key {
-#     hidden: yes
-#     sql: ${account_id} || ' ' || ${_data_date} ;;
-#   }
 
   dimension_group: _data {
     type: time
