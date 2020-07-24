@@ -21,12 +21,6 @@ explore: advertiser_events {
             AND ${advertiser_events._data_date} = ${advertiser_conversion_events._data_date}
             AND ${advertiser_events.device_segment} = ${advertiser_conversion_events.device_segment};;
   }
-#   join: account {
-#     view_label: "Ad Group Events"
-#     relationship: one_to_one
-#     type: left_outer
-#     sql_on: ${campaign_events.account_composite_key} = ${account.account_composite_key} ;;
-#   }
   # Join Dimensional Tables
   join: advertiser {
     relationship: one_to_one
