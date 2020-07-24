@@ -7,7 +7,6 @@ view: keyword_conversion_events {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -143,6 +142,7 @@ view: keyword_conversion_events {
   }
 
   dimension: keyword_id {
+    primary_key: yes
     hidden: yes
     type: string
     sql: ${TABLE}.keywordId ;;

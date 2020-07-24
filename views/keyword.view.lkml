@@ -2,6 +2,11 @@ view: keyword {
   sql_table_name: `SA360.Keyword_21700000000010391`
     ;;
 
+  dimension: composite_key {
+    primary_key: yes
+    sql: ${keyword_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     type: time
     timeframes: [

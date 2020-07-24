@@ -2,6 +2,11 @@ view: keyword_events {
   sql_table_name: `SA360.KeywordDeviceStats_21700000000010391`
     ;;
 
+  dimension: composite_key {
+    primary_key: yes
+    sql: ${keyword_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     type: time
     timeframes: [
@@ -16,7 +21,7 @@ view: keyword_events {
     ]
     convert_tz: no
     datatype: date
-    sql: CAST(${TABLE}._DATA_DATE AS TIMESTAMP) ;;
+    sql: ${TABLE}._DATA_DATE ;;
   }
 
   dimension_group: _latest {
@@ -37,19 +42,19 @@ view: keyword_events {
 
 
   dimension: account_id {
-    hidden: yes
+#     hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_group_id {
-    hidden: yes
+#     hidden: yes
     type: string
     sql: ${TABLE}.adGroupId ;;
   }
 
   dimension: ad_id {
-    hidden: yes
+#     hidden: yes
     type: string
     sql: ${TABLE}.adId ;;
   }
@@ -143,7 +148,7 @@ view: keyword_events {
   }
 
   dimension: device_segment {
-    hidden: yes
+#     hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
@@ -167,7 +172,7 @@ view: keyword_events {
   }
 
   dimension: keyword_id {
-    hidden: yes
+#     hidden: yes
     type: string
     sql: ${TABLE}.keywordId ;;
   }
