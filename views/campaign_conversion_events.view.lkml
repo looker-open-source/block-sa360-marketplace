@@ -176,4 +176,59 @@ view: campaign_conversion_events {
     value_format_name: percent_2
     sql: 1.0 * ${total_actions} / NULLIF(${campaign_events.total_clicks},0)  ;;
   }
+
+###################### Period over Period Reporting Metrics ######################
+
+  filter: this_period_filter {
+    view_label: "Period over Period"
+    group_label: "Arbitrary Period Comparisons"
+    type: date
+  }
+
+  filter: prior_period_filter {
+    view_label: "Period over Period"
+    group_label: "Arbitrary Period Comparisons"
+    type: date
+  }
+
+  dimension: days_from_start_first {
+    view_label: "Period over Period"
+    hidden: yes
+    type: number
+    sql: DATE_DIFF( ${_data_raw}, CAST({% date_start this_period_filter %} AS DATE), DAY) ;;
+  }
+
+  dimension: days_from_start_second {
+    view_label: "Period over Period"
+    hidden: yes
+    type: number
+    sql: DATE_DIFF(${_data_raw}, CAST({% date_start prior_period_filter %} AS DATE), DAY) ;;
+  }
+
+  dimension: days_from_period_start {
+    view_label: "Period over Period"
+    type: number
+    sql:
+      CASE
+       WHEN ${days_from_start_first} >= 0
+       THEN ${days_from_start_first}
+       WHEN ${days_from_start_second} >= 0
+       THEN ${days_from_start_second}
+      END;;
+  }
+
+  dimension: period_selected {
+    view_label: "Period over Period"
+    type: string
+    sql:
+        CASE
+          WHEN ${_data_raw} >=  DATE({% date_start this_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end this_period_filter %})
+          THEN 'This Period'
+          WHEN ${_data_raw} >=  DATE({% date_start prior_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end prior_period_filter %})
+          THEN 'Prior Period'
+          END ;;
+  }
+###################### Close - Period over Period Reporting Metrics ######################
 }

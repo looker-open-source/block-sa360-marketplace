@@ -234,102 +234,37 @@ view: keyword_conversion_events {
   }
 ###################### Close - Dynamic Measure ######################
 
-###################### Option 1 - Period over Period Reporting Metrics ######################
-# Link to example: https://googlemarscisandbox.cloud.looker.com/looks/9
-  filter: period_1 {
+
+###################### Period over Period Reporting Metrics ######################
+
+  filter: this_period_filter {
     view_label: "Period over Period"
-    description: "When performing period over period analysis, use this filter to assign a date range to the 1st timeframe."
-    type: date
-  }
-
-  dimension: is_period_1 {
-    view_label: "Period over Period"
-#     hidden: yes
-# The commented out condition statement below should have worked, but throws a type error. This would be better since it could be applied to the SQL_WHERE parameter for performant queries.
-#     sql: {% condition timeframe_a %} ${_data_date} {% endcondition %} ;;
-    sql:  CASE
-            WHEN ${_data_raw}  BETWEEN  DATE({% date_start period_1 %}) AND DATE({% date_end period_1 %}) THEN "yes"
-            ELSE "no"
-          END ;;
-  }
-
-  filter: period_2 {
-    view_label: "Period over Period"
-    description: "When performing period over period analysis, use this filter to assign a date range to the 2nd timeframe."
-    type: date
-  }
-
-  dimension: is_period_2 {
-    view_label: "Period over Period"
-#     hidden: yes
-    sql:   CASE
-            WHEN ${_data_raw}  BETWEEN  DATE({% date_start period_2 %}) AND DATE({% date_end period_2 %}) THEN "yes"
-            ELSE "no"
-          END ;;
-  }
-
-  measure: total_actions_p1 {
-    view_label: "Period over Period"
-#     group_label: "Period 1 Metrics"
-    type: sum
-    sql: ${dfa_actions} ;;
-    filters: [is_period_1: "yes"]
-  }
-
-  measure: total_actions_p2 {
-    view_label: "Period over Period"
-#     group_label: "Period 2 Metrics"
-    type: sum
-    sql: ${dfa_actions} ;;
-    filters: [is_period_2: "yes"]
-  }
-
-  parameter: select_timeframe {
-    view_label: "Period over Period"
-    allowed_value: {value: "Day of Month"}
-    allowed_value: {value: "Day of Week"}
-  }
-  dimension: dynamic_timeframe {
-    view_label: "Period over Period"
-    label_from_parameter: select_timeframe
-    sql: {% if select_timeframe._parameter_value == "'Day of Month'" %} ${_data_day_of_month}
-         {% elsif select_timeframe._parameter_value == "'Day of Week'" %} ${_data_day_of_week}
-         {% endif %} ;;
-  }
-
-###################### Close - Period over Period Reporting Metrics ######################
-
-
-###################### Option 2 - Period over Period Reporting Metrics ######################
-# Link to example: https://googlemarscisandbox.cloud.looker.com/looks/11
-  filter: first_period_filter {
-    view_label: "Period over Period - 2"
     group_label: "Arbitrary Period Comparisons"
     type: date
   }
 
-  filter: second_period_filter {
-    view_label: "Period over Period - 2"
+  filter: prior_period_filter {
+    view_label: "Period over Period"
     group_label: "Arbitrary Period Comparisons"
     type: date
   }
 
   dimension: days_from_start_first {
-    view_label: "Period over Period - 2"
+    view_label: "Period over Period"
     hidden: yes
     type: number
-    sql: DATE_DIFF( ${_data_raw}, CAST({% date_start first_period_filter %} AS DATE), DAY) ;;
+    sql: DATE_DIFF( ${_data_raw}, CAST({% date_start this_period_filter %} AS DATE), DAY) ;;
   }
 
   dimension: days_from_start_second {
-    view_label: "Period over Period - 2"
+    view_label: "Period over Period"
     hidden: yes
     type: number
-    sql: DATE_DIFF(${_data_raw}, CAST({% date_start second_period_filter %} AS DATE), DAY) ;;
+    sql: DATE_DIFF(${_data_raw}, CAST({% date_start prior_period_filter %} AS DATE), DAY) ;;
   }
 
   dimension: days_from_period_start {
-    view_label: "Period over Period - 2"
+    view_label: "Period over Period"
     type: number
     sql:
       CASE
@@ -341,16 +276,16 @@ view: keyword_conversion_events {
   }
 
   dimension: period_selected {
-    view_label: "Period over Period - 2"
+    view_label: "Period over Period"
     type: string
     sql:
         CASE
-          WHEN ${_data_raw} >=  DATE({% date_start first_period_filter %})
-          AND ${_data_raw} <= DATE({% date_end first_period_filter %})
-          THEN 'First Period'
-          WHEN ${_data_raw} >=  DATE({% date_start second_period_filter %})
-          AND ${_data_raw} <= DATE({% date_end second_period_filter %})
-          THEN 'Second Period'
+          WHEN ${_data_raw} >=  DATE({% date_start this_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end this_period_filter %})
+          THEN 'This Period'
+          WHEN ${_data_raw} >=  DATE({% date_start prior_period_filter %})
+          AND ${_data_raw} <= DATE({% date_end prior_period_filter %})
+          THEN 'Prior Period'
           END ;;
   }
 ###################### Close - Period over Period Reporting Metrics ######################
