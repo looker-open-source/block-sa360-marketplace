@@ -152,6 +152,7 @@ view: ad_group_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
+    drill_fields: [campaign.campaign, campaign.campaign_start, campaign.campaign_end, total_conversions, cost_per_acquisition]
   }
 
   ##### Ad Group Conversion Metrics #####
