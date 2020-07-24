@@ -161,6 +161,7 @@ view: ad_group_conversion_events {
     type: sum
     value_format_name: usd_0
     sql: ${dfa_revenue} ;;
+    drill_fields: [ad_group.ad_group, total_revenue, ad_group_events.total_cost]
   }
 
   measure: roas {
