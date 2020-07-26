@@ -204,36 +204,6 @@ view: keyword_conversion_events {
     drill_fields: [_data_date, keyword.keyword_text, conversion_rate, total_actions, keyword_events.total_clicks]
   }
 
-###################### Dynamic Measure ######################
-# Link to example: https://googlemarscisandbox.cloud.looker.com/looks/10
-  parameter: select_measure {
-    view_label: "Dynamic Measure"
-    type: string
-    allowed_value: {label: "Total Actions" value: "Total Actions"}
-    allowed_value: {label: "Total Transactions" value: "Total Transactions"}
-    allowed_value: {label: "Total Conversions" value: "Total Conversions"}
-  }
-  measure: dynamic_measure {
-    view_label: "Dynamic Measure"
-    label_from_parameter: select_measure
-    type: number
-    sql:
-      {% if select_measure._parameter_value == "'Total Actions'" %}
-        ${total_actions}
-      {% elsif select_measure._parameter_value == "'Total Transactions'" %}
-        ${total_transactions}
-      {% else %}
-        ${total_conversions}
-      {% endif %};;
-    link: {
-      label: "Click to Drill"
-      url: "{% if select_measure._parameter_value == 'Total Actions' %} {{ total_actions._link }}
-      {% elsif select_measure._parameter_value == 'Total Transactions' %} {{ total_transactions._link }}
-      {% else %} {{ total_conversions._link }}
-      {% endif %}"
-    }
-  }
-###################### Close - Dynamic Measure ######################
 
 
 ###################### Period over Period Reporting Metrics ######################

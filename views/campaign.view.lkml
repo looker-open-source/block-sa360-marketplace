@@ -4,6 +4,7 @@ view: campaign {
 
   dimension: campaign_composite_key {
     primary_key: yes
+    hidden:  yes
     sql: ${campaign_id} || ' ' || ${_data_date} ;;
   }
 
@@ -297,6 +298,18 @@ view: campaign {
     type: number
     value_format_name: usd
     sql: ${TABLE}.monthlyBudget ;;
+  }
+
+  measure: average_monthly_budget {
+    type: average
+    value_format_name: usd
+    sql: ${monthly_budget} ;;
+  }
+
+  measure: total_monthly_budget {
+    type: sum
+    value_format_name: usd
+    sql: ${monthly_budget} ;;
   }
 
   dimension: network_target {

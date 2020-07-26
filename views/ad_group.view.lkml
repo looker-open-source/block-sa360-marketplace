@@ -3,6 +3,7 @@ view: ad_group {
     ;;
 
   dimension: ad_group_composite_key {
+    hidden:  yes
     primary_key: yes
     sql: ${ad_group_id} || ' ' || ${_data_date} ;;
   }

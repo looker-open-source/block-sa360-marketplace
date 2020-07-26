@@ -41,7 +41,7 @@ explore: campaign_events {
             AND ${campaign_events.device_segment} = ${campaign_conversion_events.device_segment};;
   }
   join: account {
-    view_label: "Ad Group Events"
+    view_label: "Campaign Events"
     relationship: one_to_one
     type: left_outer
     sql_on: ${campaign_events.account_composite_key} = ${account.account_composite_key} ;;

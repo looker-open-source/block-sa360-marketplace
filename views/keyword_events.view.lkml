@@ -168,7 +168,7 @@ view: keyword_events {
   }
 
   dimension: device_segment {
-#     hidden: yes
+     hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }

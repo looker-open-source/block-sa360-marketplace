@@ -155,12 +155,6 @@ view: product {
     sql: ${TABLE}.productCondition ;;
   }
 
-  dimension: product_cost_of_goods_sold {
-    label: "Cost of Goods Sold"
-    type: number
-    sql: ${TABLE}.productCostOfGoodsSold ;;
-  }
-
   dimension: product_country {
     description: "The country registered for the product's inventory feed."
     label: "Country"
@@ -261,20 +255,6 @@ view: product {
     sql: ${TABLE}.productPattern ;;
   }
 
-  dimension: product_price {
-    label: "Price"
-    value_format_name: usd
-    type: number
-    sql: ${TABLE}.productPrice ;;
-  }
-
-  dimension: product_sale_price {
-    label: "Sale Price"
-    type: number
-    value_format_name: usd
-    sql: ${TABLE}.productSalePrice ;;
-  }
-
   dimension: product_size {
     label: "Size"
     type: string
@@ -337,4 +317,68 @@ view: product {
     type: count
     drill_fields: []
   }
+
+  dimension: product_price {
+    label: "Price"
+    value_format_name: usd
+    type: number
+    sql: ${TABLE}.productPrice ;;
+  }
+
+  measure: total_price {
+    value_format_name: usd
+    type: sum
+    sql: ${product_price} ;;
+  }
+
+  measure: average_price {
+    value_format_name: usd
+    type: average
+    sql: ${product_price} ;;
+  }
+
+  dimension: product_sale_price {
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: ${TABLE}.productSalePrice ;;
+  }
+
+  dimension: product_cost_of_goods_sold {
+    label: "Cost of Goods Sold"
+    type: number
+    value_format_name: usd
+    sql: ${TABLE}.productCostOfGoodsSold ;;
+  }
+
+  measure: total_cost_of_goods_sold {
+    type: sum
+    value_format_name: usd
+    sql: ${product_cost_of_goods_sold} ;;
+  }
+
+  measure: average_cost_of_goods_sold {
+    type: average
+    value_format_name: usd
+    sql: ${product_cost_of_goods_sold} ;;
+  }
+
+  dimension: gross_margin {
+    type: number
+    value_format_name: usd
+    sql: ${product_sale_price} - ${product_cost_of_goods_sold} ;;
+  }
+
+  measure: total_gross_margin {
+    type:  sum
+    value_format_name: usd
+    sql: ${gross_margin} ;;
+  }
+
+  measure: average_gross_margin {
+    type: average
+    value_format_name: usd
+    sql: ${gross_margin} ;;
+  }
+
 }

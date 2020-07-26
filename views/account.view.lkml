@@ -4,6 +4,7 @@ view: account {
 
   dimension: account_composite_key {
     primary_key: yes
+    hidden: yes
     sql: ${account_id} || ' ' || ${_data_date} ;;
   }
 

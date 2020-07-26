@@ -4,6 +4,7 @@ view: advertiser {
 
   dimension: advertiser_composite_key {
     primary_key: yes
+    hidden:  yes
     sql: ${advertiser_id} || ' ' || ${_data_date} ;;
   }
 

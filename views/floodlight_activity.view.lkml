@@ -104,7 +104,7 @@ view: floodlight_activity {
     sql: ${TABLE}.floodlightGroupTag ;;
   }
 
-  dimension_group: last_modified_timestamp {
+  dimension_group: last_modified {
     type: time
     timeframes: [
       raw,
