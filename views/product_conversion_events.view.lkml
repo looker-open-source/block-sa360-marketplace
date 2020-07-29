@@ -2,6 +2,21 @@ view: product_conversion_events {
   sql_table_name: `SA360.ProductAdvertisedFloodlightAndDeviceStats_21700000000010391`
     ;;
 
+  dimension: advertiser_composite_key {
+    hidden: yes
+    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: account_composite_key {
+    hidden: yes
+    sql: ${account_id} || ' ' || ${_data_date} ;;
+  }
+
+  dimension: product_composite_key {
+    primary_key: yes
+    sql: ${product_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     hidden: yes
     type: time
