@@ -144,6 +144,7 @@ view: product_conversion_events {
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
     drill_fields: [campaign.campaign, total_conversions, total_actions, total_transactions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   ##### Product Conversion Metrics #####

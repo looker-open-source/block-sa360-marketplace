@@ -209,12 +209,14 @@ view: keyword_events {
     type: sum
     sql: ${impr} ;;
     drill_fields: [keyword.keyword_text, _data_date, total_impressions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
     drill_fields: [_data_date, keyword.keyword_text, total_clicks]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_visits {

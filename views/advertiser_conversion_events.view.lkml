@@ -131,6 +131,7 @@ view: advertiser_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   ##### Keyword Conversion Metrics #####

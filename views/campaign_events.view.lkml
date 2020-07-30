@@ -178,12 +178,14 @@ view: campaign_events {
     type: sum
     sql: ${impr} ;;
     drill_fields: [campaign.campaign, total_impressions, total_clicks]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
     drill_fields: [campaign.campaign, total_clicks, campaign_conversion_events.total_conversions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_visits {

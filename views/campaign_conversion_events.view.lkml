@@ -145,6 +145,7 @@ view: campaign_conversion_events {
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
     drill_fields: [campaign.campaign, total_conversions, cost_per_acquisition, total_actions, total_transactions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
 
   }
 
@@ -155,6 +156,7 @@ view: campaign_conversion_events {
     value_format_name: usd_0
     sql: ${dfa_revenue} ;;
     drill_fields: [campaign.campaign, total_revenue, campaign_events.total_cost, ROAS]
+
   }
 
   measure: ROAS {

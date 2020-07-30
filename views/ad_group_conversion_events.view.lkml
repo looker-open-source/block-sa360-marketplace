@@ -154,6 +154,7 @@ view: ad_group_conversion_events {
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
     drill_fields: [ad_group.ad_group, total_conversions, cost_per_acquisition, total_actions, total_transactions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   ##### Ad Group Conversion Metrics #####

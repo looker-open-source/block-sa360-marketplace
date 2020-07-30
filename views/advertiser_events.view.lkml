@@ -153,11 +153,13 @@ view: advertiser_events {
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_visits {
