@@ -153,19 +153,18 @@ explore: product_events {
   }
   join: account {
     view_label: "Product Events"
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${account.account_id} = ${product_conversion_events.account_id} ;;
+    sql_on: ${product_conversion_events.product_composite_key} = ${account.account_composite_key} ;;
   }
   join: product {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${product_events.product_id} = ${product.product_id} ;;
+    sql_on: ${product_conversion_events.product_composite_key} = ${product.product_composite_key} ;;
   }
   join: advertiser {
-    relationship: many_to_one
+    relationship: one_to_one
     type: left_outer
-    sql_on: ${product_events.advertiser_id} = ${advertiser.advertiser_id} ;;
+    sql_on: ${product_conversion_events.product_composite_key} = ${advertiser.advertiser_composite_key} ;;
   }
-
 }

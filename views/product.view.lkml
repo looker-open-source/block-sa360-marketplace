@@ -2,6 +2,12 @@ view: product {
   sql_table_name: `SA360.ProductAdvertised_21700000000010391`
     ;;
 
+  dimension: product_composite_key {
+    hidden: yes
+    primary_key: yes
+    sql: ${product_id} || ' ' || ${_data_date} ;;
+  }
+
   dimension_group: _data {
     type: time
     timeframes: [
