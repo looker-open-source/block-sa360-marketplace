@@ -192,14 +192,14 @@ view: ad_group_events {
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
-    drill_fields: [ad_group.adgroup, total_impressions]
+    drill_fields: [ad_group.ad_group, total_impressions]
     value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
-    drill_fields: [ad_group.adgroup, total_clicks]
+    drill_fields: [ad_group.ad_group, total_clicks, click_through_rate, total_clicks, total_impressions]
     value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 

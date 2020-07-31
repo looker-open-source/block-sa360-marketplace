@@ -81,6 +81,11 @@ view: campaign {
       url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/31?Campaign={{value}}"
       label: "Campaign Performance Dashboard"
     }
+    link: {
+      url: "https://searchads.google.com/ds/cm/cm?#adgroups.ay={{ campaign.agency_id._value }};av={{ campaign.advertiser_id._value }};ea={{ account.account_engine_id._value }};c={{ campaign.campaign_id._value }}"
+      label: "View on SA360"
+      icon_url: "https://storage.googleapis.com/support-kms-prod/kNxlBgSkVI3TZFe77PovWkoh0P9K7Vw1ovEJ"
+    }
   }
 
   dimension_group: campaign_end {

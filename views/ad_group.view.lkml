@@ -48,6 +48,11 @@ view: ad_group {
   dimension: ad_group {
     type: string
     sql: ${TABLE}.adGroup ;;
+    link: {
+      url: "https://searchads.google.com/ds/cm/cm?#adgroups.ay={{ campaign.agency_id._value }};av={{ campaign.advertiser_id._value }};ea={{ account.account_engine_id._value }};c={{ campaign.campaign_id._value }};ag={{ ad_group.ad_group_id._value }}"
+      label: "View on SA360"
+      icon_url: "https://storage.googleapis.com/support-kms-prod/kNxlBgSkVI3TZFe77PovWkoh0P9K7Vw1ovEJ"
+    }
   }
 
   dimension: ad_group_broad_max_cpc {

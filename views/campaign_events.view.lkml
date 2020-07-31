@@ -198,7 +198,7 @@ view: campaign_events {
     type: sum
     value_format_name: usd_0
     sql: ${cost} ;;
-    drill_fields: [campaign.campaign,  total_cost, total_clicks, campaign_conversion_events.total_revenue]
+    drill_fields: [campaign.campaign, total_cost, total_clicks, campaign_conversion_events.total_revenue]
   }
 
   measure: total_cumulative_spend {
