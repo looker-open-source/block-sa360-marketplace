@@ -14,7 +14,10 @@ What does this Looker Block do for me?
 - Usable / Shareable Dashboards - create centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, campaign-end reporting, or whatever else serves your use-case.
  
 Search Ads 360 Data Structure
-Prior to installing the block, you will need to use the BigQuery Data Transfer Service to load your data into BigQuery. The BigQuery Data Transfer Service for Search Ads 360 (formerly known as Doubleclick Search) allows you to automatically schedule and manage recurring load jobs for Search Ads 360 reporting data. More details can be found here.
+
+
+Prior to installing the block, you will need to use the BigQuery Data Transfer Service to load your data into BigQuery. The BigQuery Data Transfer Service for Search Ads 360 (formerly known as Doubleclick Search) allows you to automatically schedule and manage recurring load jobs for Search Ads 360 reporting data. More details can be found (here) [https://slack-redir.net/link?url=https%3A%2F%2Fcloud.google.com%2Fbigquery-transfer%2Fdocs%2Fsa360-transfer].
+
 When your Search Ads 360 (SA360) data is exported (in this case, through Transfer Services), the data is written to ingestion-time partitioned tables. 
 Google's documentation on the data included in the export can be found here.
 You can also find a cookbook of SQL queries for common questions in Google's documentation
