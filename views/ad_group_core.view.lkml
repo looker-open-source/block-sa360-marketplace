@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/ad_group.view.lkml"
+
+
 view: ad_group {
-  sql_table_name: `SA360.AdGroup_21700000000010391`
-    ;;
+  extends: [ad_group_config]
+}
+
+###################################################
+
+view: ad_group_core {
+  sql_table_name: `@{SA_360_SCHEMA}.AdGroup_@{ADVERTISER_ID}`;;
 
   dimension: ad_group_composite_key {
     hidden:  yes

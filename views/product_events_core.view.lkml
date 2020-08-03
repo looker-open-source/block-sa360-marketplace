@@ -1,21 +1,14 @@
-view: campaign_events {
-  sql_table_name: `SA360.CampaignDeviceStats_21700000000010391`
-    ;;
+include: "//@{CONFIG_PROJECT_NAME}/product_events.view.lkml"
 
-  dimension: campaign_composite_key {
-    hidden: yes
-    sql: ${campaign_id} || ' ' || ${_data_date} ;;
-  }
 
-  dimension: advertiser_composite_key {
-    hidden: yes
-    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
-  }
+view: product_events {
+  extends: [product_events_config]
+}
 
-  dimension: account_composite_key {
-    hidden: yes
-    sql: ${account_id} || ' ' || ${_data_date} ;;
-  }
+###################################################
+
+view: product_events_core {
+  sql_table_name: `@{SA_360_SCHEMA}.ProductAdvertisedDeviceStats_@{ADVERTISER_ID}`;;
 
   dimension_group: _data {
     type: time
@@ -46,12 +39,6 @@ view: campaign_events {
     convert_tz: no
     datatype: date
     sql: ${TABLE}._LATEST_DATE ;;
-  }
-
-  dimension: account_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.accountId ;;
   }
 
   dimension: ad_words_conversion_value {
@@ -102,18 +89,6 @@ view: campaign_events {
     sql: ${TABLE}.avgPos ;;
   }
 
-  dimension: campaign_engine_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.campaignEngineId ;;
-  }
-
-  dimension: campaign_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.campaignId ;;
-  }
-
   dimension: clicks {
     hidden: yes
     type: number
@@ -154,16 +129,16 @@ view: campaign_events {
     sql: ${TABLE}.deviceSegment ;;
   }
 
-  dimension: effective_bid_strategy_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.effectiveBidStrategyId ;;
-  }
-
   dimension: impr {
     hidden: yes
     type: number
     sql: ${TABLE}.impr ;;
+  }
+
+  dimension: product_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.productId ;;
   }
 
   dimension: visits {
@@ -172,7 +147,13 @@ view: campaign_events {
     sql: ${TABLE}.visits ;;
   }
 
-##### Campaign Metrics #####
+  measure: count {
+    hidden: yes
+    type: count
+    drill_fields: []
+  }
+
+##### Product Metrics #####
 
   measure: total_impressions {
     type: sum
@@ -184,7 +165,7 @@ view: campaign_events {
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
-    drill_fields: [campaign.campaign, total_clicks, campaign_conversion_events.total_conversions]
+    drill_fields: [campaign.campaign, total_clicks, product_conversion_events.total_conversions]
     value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
@@ -196,9 +177,9 @@ view: campaign_events {
   measure: total_cost {
     label: "Total Spend (Search Clicks)"
     type: sum
-    value_format_name: usd_0
+    value_format_name: usd
     sql: ${cost} ;;
-    drill_fields: [campaign.campaign, total_cost, total_clicks, campaign_conversion_events.total_revenue]
+    drill_fields: [campaign.campaign, total_cost, product_conversion_events.total_revenue, product_conversion_events.ROAS]
   }
 
   measure: total_cumulative_spend {
@@ -226,6 +207,4 @@ view: campaign_events {
     value_format_name: usd
     drill_fields: [campaign.campaign, cost_per_click, total_cost, total_clicks]
   }
-
-
 }

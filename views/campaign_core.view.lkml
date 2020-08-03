@@ -1,5 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/campaign.view.lkml"
+
+
 view: campaign {
-  sql_table_name: `SA360.Campaign_21700000000010391`
+  extends: [campaign_config]
+}
+
+###################################################
+
+view: campaign_core {
+  sql_table_name: `@{SA_360_SCHEMA}.Campaign_@{ADVERTISER_ID}`
     ;;
 
   dimension: campaign_composite_key {

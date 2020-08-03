@@ -1,0 +1,38 @@
+{
+  "label": "Search Ads 360",
+  "category_label": "Models",
+  "branding": {
+    "image_uri": "https://marketplace-api.looker.com/block-icons/hubspot_icon.png",
+    "tagline": "A smarter, cleaner way to gather and share insights from your Search Ads 360."
+  },
+
+  "constants": {
+    "CONNECTION_NAME": {
+      "label": "Connection Name",
+      "value_constraint": "connection"
+    },
+    "SA_360_SCHEMA": {
+      "label": "Search Ads 360 Schema Name"
+    },
+    "ADVERTISER_ID": {
+      "label": "Advertiser ID from Search Ads 360"
+    },
+    "CONFIG_PROJECT_NAME": {
+      "label": "Config Project Name"
+    }
+  },
+  "models": [
+    {
+      "name": "block_sa360",
+      "connection_constant": "CONNECTION_NAME"
+    }
+  ],
+  "auxiliary_projects": [
+    {
+      "git_uri": "git://github.com/llooker/block-sa360-config.git",
+      "git_ref": "13541e8ae36fcdf17dd8d0eec879bb0f2838f917",
+      "label": "Search Ads 360 Config",
+      "constant_name": "CONFIG_PROJECT_NAME"
+    }
+  ]
+}

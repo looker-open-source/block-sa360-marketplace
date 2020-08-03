@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/keyword_events.view.lkml"
+
+
 view: keyword_events {
-  sql_table_name: `SA360.KeywordDeviceStats_21700000000010391`
-    ;;
+  extends: [keyword_events_config]
+}
+
+###################################################
+
+view: keyword_events_core {
+  sql_table_name: `@{SA_360_SCHEMA}.KeywordDeviceStats_@{ADVERTISER_ID}`;;
 
   dimension: keyword_composite_key {
     hidden: yes

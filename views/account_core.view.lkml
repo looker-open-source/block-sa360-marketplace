@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/account.view.lkml"
+
+
 view: account {
-  sql_table_name: `SA360.Account_21700000000010391`
-    ;;
+  extends: [account_config]
+}
+
+###################################################
+
+view: account_core {
+  sql_table_name: `@{SA_360_SCHEMA}.Account_@{ADVERTISER_ID}`;;
 
   dimension: account_composite_key {
     primary_key: yes

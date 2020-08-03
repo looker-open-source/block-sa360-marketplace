@@ -1,21 +1,15 @@
-view: product_conversion_events {
-  sql_table_name: `SA360.ProductAdvertisedFloodlightAndDeviceStats_21700000000010391`
-    ;;
+include: "//@{CONFIG_PROJECT_NAME}/campaign_conversion_events.view.lkml"
 
-  dimension: advertiser_composite_key {
-    hidden: yes
-    sql: ${advertiser_id} || ' ' || ${_data_date} ;;
-  }
 
-  dimension: account_composite_key {
-    hidden: yes
-    sql: ${account_id} || ' ' || ${_data_date} ;;
-  }
+view: campaign_conversion_events {
+  extends: [campaign_conversion_events_config]
+}
 
-  dimension: product_composite_key {
-    primary_key: yes
-    sql: ${product_id} || ' ' || ${_data_date} ;;
-  }
+###################################################
+
+view: campaign_conversion_events_core {
+  view_label: "Campaign Events"
+  sql_table_name: `@{SA_360_SCHEMA}.CampaignFloodlightAndDeviceStats_@{ADVERTISER_ID}`;;
 
   dimension_group: _data {
     hidden: yes
@@ -55,12 +49,6 @@ view: product_conversion_events {
     sql: ${TABLE}.accountId ;;
   }
 
-  dimension: ad_group_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.adGroupId ;;
-  }
-
   dimension: advertiser_id {
     hidden: yes
     type: string
@@ -73,6 +61,12 @@ view: product_conversion_events {
     sql: ${TABLE}.agencyId ;;
   }
 
+  dimension: campaign_engine_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.campaignEngineId ;;
+  }
+
   dimension: campaign_id {
     hidden: yes
     type: string
@@ -80,7 +74,7 @@ view: product_conversion_events {
   }
 
   dimension_group: date {
-    hidden:  yes
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -124,6 +118,12 @@ view: product_conversion_events {
     sql: ${TABLE}.dfaWeightedActions ;;
   }
 
+  dimension: effective_bid_strategy_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.effectiveBidStrategyId ;;
+  }
+
   dimension: floodlight_activity_id {
     hidden: yes
     type: string
@@ -136,13 +136,7 @@ view: product_conversion_events {
     sql: ${TABLE}.floodlightGroupId ;;
   }
 
-  dimension: product_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.productId ;;
-  }
-
-  ##### Product Standard Metric Aggregates #####
+  ##### Campaign Standard Metric Aggregates #####
 
   measure: total_actions {
     type: sum
@@ -158,25 +152,27 @@ view: product_conversion_events {
     description: "Sum of Dfa Actions and Dfa Transactions"
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
-    drill_fields: [campaign.campaign, total_conversions, total_actions, total_transactions]
+    drill_fields: [campaign.campaign, total_conversions, cost_per_acquisition, total_actions, total_transactions]
     value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
+
   }
 
-  ##### Product Conversion Metrics #####
+  ##### Campaign Conversion Metrics #####
 
   measure: total_revenue {
     type: sum
     value_format_name: usd_0
     sql: ${dfa_revenue} ;;
-    drill_fields: [campaign.campaign, total_revenue, product_events.total_cost, cost_per_acquisition]
+    drill_fields: [campaign.campaign, total_revenue, campaign_events.total_cost, ROAS]
+
   }
 
   measure: ROAS {
     description: "Associated revenue divided by the total cost"
     type: number
     value_format_name: percent_0
-    sql: 1.0 * ${total_revenue} / NULLIF(${product_events.total_cost},0) ;;
-    drill_fields: [campaign.campaign, ROAS, total_revenue, product_events.total_cost]
+    sql: 1.0 * ${total_revenue} / NULLIF(${campaign_events.total_cost},0) ;;
+    drill_fields: [campaign.campaign, ROAS, total_revenue, campaign.total_cost]
   }
 
   measure: cost_per_acquisition {
@@ -184,16 +180,16 @@ view: product_conversion_events {
     description: "Average cost per conversion"
     type: number
     value_format_name: usd
-    sql: ${product_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
-    drill_fields: [campaign.campaign, cost_per_acquisition, product_events.total_cost, total_conversions]
+    sql: ${campaign_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
+    drill_fields: [campaign.campaign, cost_per_acquisition, campaign_events.total_cost, total_conversions]
   }
 
   measure: conversion_rate {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${product_events.total_clicks},0)  ;;
-    drill_fields: [campaign.campaign, conversion_rate, total_actions, product_events.total_clicks]
+    sql: 1.0 * ${total_actions} / NULLIF(${campaign_events.total_clicks},0)  ;;
+    drill_fields: [campaign.campaign, conversion_rate, total_actions, campaign_events.total_clicks]
   }
 
 ###################### Period over Period Reporting Metrics ######################
@@ -250,6 +246,4 @@ view: product_conversion_events {
           END ;;
   }
 ###################### Close - Period over Period Reporting Metrics ######################
-
-
 }

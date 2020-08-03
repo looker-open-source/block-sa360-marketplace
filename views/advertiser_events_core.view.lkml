@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/advertiser_events.view.lkml"
+
+
 view: advertiser_events {
-  sql_table_name: `SA360.AdvertiserDeviceStats_21700000000010391`
-    ;;
+  extends: [advertiser_events_config]
+}
+
+###################################################
+
+view: advertiser_events_core {
+  sql_table_name: `@{SA_360_SCHEMA}.AdvertiserDeviceStats_@{ADVERTISER_ID}` ;;
 
   dimension: advertiser_composite_key {
     hidden: yes
