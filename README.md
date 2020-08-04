@@ -9,8 +9,6 @@
 
 - Enterprise Data Platform - Take advantage of Looker's data platform functionality, including data actions, scheduling, permissions, alerting, parameterization (each user can only see their own data), and more.
 
-- Multiple GA Properties in One Dashboard - Elevate your analysis beyond the limited "Roll-Up Reporting" and see all properties in one dashboard and explore interface! The parameterize user permissions as necessary (so analyst for advertiser A can't see data for advertiser B) to give each user a live view into the data that matters to them.
-
 - Usable / Shareable Dashboards - create centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, campaign-end reporting, or whatever else serves your use-case.
  
 ## Search Ads 360 Data Structure
