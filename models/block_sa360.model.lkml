@@ -37,6 +37,7 @@ explore: product_events {
 
 
 explore: advertiser_events_core {
+  extension: required
   label: "(1) Advertiser Events"
   description: "Performance metrics across all of an advertiser's engine accounts and campaigns."
   join: advertiser_conversion_events {
@@ -56,6 +57,7 @@ explore: advertiser_events_core {
 }
 
 explore: campaign_events_core {
+  extension: required
   label: "(2) Campaign Events"
   description: "Performance metrics for Campaigns."
   join: campaign_conversion_events {
@@ -86,6 +88,7 @@ explore: campaign_events_core {
 }
 
 explore: ad_group_events_core {
+  extension: required
   label: "(3) Ad Group Events"
   description: "Performance metrics for Ad Groups."
   join: ad_group_conversion_events {
@@ -121,6 +124,7 @@ explore: ad_group_events_core {
 }
 
 explore: keyword_events_core {
+  extension: required
   label: "(4) Keyword Events"
   description: "Performance metrics for Keywords including Floodlight attributes."
   join: keyword_conversion_events {
@@ -168,6 +172,7 @@ explore: keyword_events_core {
 }
 
 explore: product_events_core {
+  extension: required
   description: "Performance metrics for products defined in an inventory feed and advertised in a shopping campaign."
   join: product_conversion_events {
     view_label: "Product Events"
