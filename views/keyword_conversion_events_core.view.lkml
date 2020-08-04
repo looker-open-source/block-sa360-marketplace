@@ -209,7 +209,7 @@ view: keyword_conversion_events_core {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${keyword_events.total_clicks},0)  ;;
+    sql: 1.0 * ${total_conversions} / NULLIF(${keyword_events.total_clicks},0)  ;;
     drill_fields: [_data_date, keyword.keyword_text, conversion_rate, total_actions, keyword_events.total_clicks]
   }
 

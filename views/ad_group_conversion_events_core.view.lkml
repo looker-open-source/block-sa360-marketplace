@@ -195,7 +195,7 @@ view: ad_group_conversion_events_core {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${ad_group_events.total_clicks},0)  ;;
+    sql: 1.0 * ${total_conversions} / NULLIF(${ad_group_events.total_clicks},0)  ;;
     drill_fields: [ad_group.ad_group, conversion_rate, total_actions, ad_group_events.total_clicks]
   }
 

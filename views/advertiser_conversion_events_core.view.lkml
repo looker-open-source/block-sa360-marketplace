@@ -169,7 +169,7 @@ view: advertiser_conversion_events_core {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${advertiser_events_core.total_clicks},0)  ;;
+    sql: 1.0 * ${total_conversions} / NULLIF(${advertiser_events_core.total_clicks},0)  ;;
   }
 
 ###################### Period over Period Reporting Metrics ######################

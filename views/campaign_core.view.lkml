@@ -87,7 +87,7 @@ view: campaign_core {
     type: string
     sql: ${TABLE}.campaign ;;
     link: {
-      url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/31?Campaign={{value}}"
+      url: "/dashboards-next/31?Campaign={{ value | encode_uri }}"
       label: "Campaign Performance Dashboard"
     }
     link: {

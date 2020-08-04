@@ -201,7 +201,7 @@ view: product_conversion_events_core {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${product_events.total_clicks},0)  ;;
+    sql: 1.0 * ${total_conversions} / NULLIF(${product_events.total_clicks},0)  ;;
     drill_fields: [campaign.campaign, conversion_rate, total_actions, product_events.total_clicks]
   }
 

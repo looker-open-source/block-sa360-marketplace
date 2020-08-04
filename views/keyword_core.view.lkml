@@ -187,7 +187,7 @@ view: keyword_core {
     type: string
     sql: ${TABLE}.keywordText ;;
     link: {
-      url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/24?Keyword={{value}}"
+      url: "/dashboards-next/24?Keyword={{ value | encode_uri }}"
       label: "Keyword Performance Lookup"
     }
   }
