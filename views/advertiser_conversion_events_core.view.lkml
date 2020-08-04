@@ -154,7 +154,7 @@ view: advertiser_conversion_events_core {
     description: "Associated revenue divided by the total cost"
     type: number
     value_format_name: percent_0
-    sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_events_core.total_cost},0) ;;
+    sql: 1.0 * ${total_revenue} / NULLIF(${advertiser_events.total_cost},0) ;;
   }
 
   measure: cost_per_acquisition {
@@ -162,7 +162,7 @@ view: advertiser_conversion_events_core {
     description: "Average cost per conversion"
     type: number
     value_format_name: usd
-    sql: ${advertiser_events_core.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
+    sql: ${advertiser_events.total_cost}*1.0/NULLIF(${total_conversions},0) ;;
   }
 
   measure: conversion_rate {
@@ -170,6 +170,7 @@ view: advertiser_conversion_events_core {
     type: number
     value_format_name: percent_2
     sql: 1.0 * ${total_conversions} / NULLIF(${advertiser_events_core.total_clicks},0)  ;;
+
   }
 
 ###################### Period over Period Reporting Metrics ######################
