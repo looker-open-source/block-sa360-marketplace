@@ -16,16 +16,16 @@ constant: CONFIG_PROJECT_NAME {
 }
 
 constant: CONNECTION_NAME {
-  value: "pentahedron"
+  value: "input_connection_name"
   export: override_required
 }
 
 constant: SA_360_SCHEMA {
-  value: "SA360"
+  value: "input_schema_here"
   export: override_required
 }
 
 constant: ADVERTISER_ID {
-  value: "21700000000010391"
+  value: "input_advertiser_id"
   export: override_required
 }
