@@ -31,7 +31,7 @@
   "auxiliary_projects": [
     {
       "git_uri": "git://github.com/llooker/block-sa360-config.git",
-      "git_ref": "96952e766efe08d5d36f08e48a2d9b333000da71",
+      "git_ref": "bd38740a5368d7d0cce5585d154c383381006e8c",
       "label": "Search Ads 360 Config",
       "constant_name": "CONFIG_PROJECT_NAME"
     }
