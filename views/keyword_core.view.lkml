@@ -1,5 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/keyword.view.lkml"
+
+
 view: keyword {
-  sql_table_name: `SA360.Keyword_21700000000010391`
+  extends: [keyword_config]
+}
+
+###################################################
+
+view: keyword_core {
+  sql_table_name: `@{SA_360_SCHEMA}.Keyword_@{ADVERTISER_ID}`
     ;;
 
   dimension: keyword_composite_key {
@@ -178,7 +187,7 @@ view: keyword {
     type: string
     sql: ${TABLE}.keywordText ;;
     link: {
-      url: "https://googlemarscisandbox.cloud.looker.com/dashboards-next/24?Keyword={{value}}"
+      url: "/dashboards-next/24?Keyword={{ value | encode_uri }}"
       label: "Keyword Performance Lookup"
     }
   }

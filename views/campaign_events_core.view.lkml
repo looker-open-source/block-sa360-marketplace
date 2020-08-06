@@ -1,16 +1,14 @@
-view: keyword_events {
-  sql_table_name: `SA360.KeywordDeviceStats_21700000000010391`
-    ;;
+include: "//@{CONFIG_PROJECT_NAME}/campaign_events.view.lkml"
 
-  dimension: keyword_composite_key {
-    hidden: yes
-    sql: ${keyword_id} || ' ' || ${_data_date} ;;
-  }
 
-  dimension: ad_group_composite_key {
-    hidden: yes
-    sql: ${ad_group_id} || ' ' || ${_data_date} ;;
-  }
+view: campaign_events {
+  extends: [campaign_events_config]
+}
+
+###################################################
+
+view: campaign_events_core {
+  sql_table_name: `@{SA_360_SCHEMA}.CampaignDeviceStats_@{ADVERTISER_ID}`;;
 
   dimension: campaign_composite_key {
     hidden: yes
@@ -31,8 +29,6 @@ view: keyword_events {
     type: time
     timeframes: [
       raw,
-      hour_of_day,
-      day_of_week,
       date,
       week,
       month,
@@ -45,7 +41,7 @@ view: keyword_events {
   }
 
   dimension_group: _latest {
-    hidden:  yes
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -60,39 +56,26 @@ view: keyword_events {
     sql: ${TABLE}._LATEST_DATE ;;
   }
 
-
   dimension: account_id {
-#     hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.accountId ;;
   }
 
-  dimension: ad_group_id {
-#     hidden: yes
-    type: string
-    sql: ${TABLE}.adGroupId ;;
-  }
-
-  dimension: ad_id {
-#     hidden: yes
-    type: string
-    sql: ${TABLE}.adId ;;
-  }
-
   dimension: ad_words_conversion_value {
-    description: "Aggregate value of Google Ads conversions."
+    hidden: yes
     type: number
     sql: ${TABLE}.adWordsConversionValue ;;
   }
 
   dimension: ad_words_conversions {
-    description: "The data that the advertiser has set up to be reported in the Google Ads Conversions column. When an Google Ads conversion action is created, the advertiser can choose whether to count those conversions in the Conversions reporting column."
+    hidden: yes
     type: number
     sql: ${TABLE}.adWordsConversions ;;
   }
 
   dimension: ad_words_view_through_conversions {
-    description: "The total number of Google Ads view-through conversions."
+    hidden: yes
     type: number
     sql: ${TABLE}.adWordsViewThroughConversions ;;
   }
@@ -127,6 +110,12 @@ view: keyword_events {
     sql: ${TABLE}.avgPos ;;
   }
 
+  dimension: campaign_engine_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.campaignEngineId ;;
+  }
+
   dimension: campaign_id {
     hidden: yes
     type: string
@@ -134,13 +123,13 @@ view: keyword_events {
   }
 
   dimension: clicks {
-    hidden:  yes
+    hidden: yes
     type: number
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: cost {
-    hidden:  yes
+    hidden: yes
     type: number
     sql: ${TABLE}.cost ;;
   }
@@ -151,7 +140,7 @@ view: keyword_events {
     sql: ${TABLE}.ctr ;;
   }
 
-  dimension_group: visit {
+  dimension_group: date {
     hidden: yes
     type: time
     timeframes: [
@@ -168,7 +157,7 @@ view: keyword_events {
   }
 
   dimension: device_segment {
-     hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.deviceSegment ;;
   }
@@ -180,41 +169,31 @@ view: keyword_events {
   }
 
   dimension: impr {
-    hidden:  yes
+    hidden: yes
     type: number
     sql: ${TABLE}.impr ;;
   }
 
-  dimension: keyword_engine_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.keywordEngineId ;;
-  }
-
-  dimension: keyword_id {
-#     hidden: yes
-    type: string
-    sql: ${TABLE}.keywordId ;;
-  }
-
   dimension: visits {
-    hidden:  yes
+    hidden: yes
     type: number
     sql: ${TABLE}.visits ;;
   }
 
-##### Ad Event Metrics #####
+##### Campaign Metrics #####
 
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
-    drill_fields: [keyword.keyword_text, _data_date, total_impressions]
+    drill_fields: [campaign.campaign, total_impressions, total_clicks]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
-    drill_fields: [_data_date, keyword.keyword_text, total_clicks]
+    drill_fields: [campaign.campaign, total_clicks, campaign_conversion_events.total_conversions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_visits {
@@ -227,7 +206,7 @@ view: keyword_events {
     type: sum
     value_format_name: usd_0
     sql: ${cost} ;;
-    drill_fields: [_data_date, keyword.keyword_text, total_cost]
+    drill_fields: [campaign.campaign, total_cost, total_clicks, campaign_conversion_events.total_revenue]
   }
 
   measure: total_cumulative_spend {
@@ -244,7 +223,7 @@ view: keyword_events {
     type: number
     value_format_name: percent_2
     sql: ${total_clicks}*1.0/NULLIF(${total_impressions},0);;
-    drill_fields: [_data_date, keyword.keyword_text, click_through_rate, total_clicks, total_impressions]
+    drill_fields: [campaign.campaign, click_through_rate, total_clicks, total_impressions]
   }
 
   measure: cost_per_click {
@@ -253,52 +232,7 @@ view: keyword_events {
     type: number
     sql: ${total_cost}* 1.0/ NULLIF(${total_clicks},0) ;;
     value_format_name: usd
-    drill_fields: [_data_date, keyword.keyword_text, cost_per_click, total_cost, total_clicks]
-  }
-  #this parameter allows users to select the metric they want to look at
-  parameter: metric_selector {
-    description: "Use this filter to toggle between what metric matters most to your business"
-    type: string
-    allowed_value: {
-      label: "Clicks"
-      value: "total_clicks"
-    }
-    allowed_value: {
-      label: "Conversions"
-      value: "total_conversions"
-    }
-    allowed_value: {
-      label: "Conversion Rate"
-      value: "conversion_rate"
-    }
-    allowed_value: {
-      label: "CTR"
-      value: "click_through_rate"
-    }
-    allowed_value: {
-      label: "ROAS"
-      value: "roas"
-    }
-  }
-
-  #this field can be used with the metric selector filter
-  measure: metric {
-    label_from_parameter: metric_selector
-    type: number
-    sql:
-    CASE
-      WHEN {% parameter metric_selector %} = 'total_clicks'
-        THEN ${total_clicks}
-      WHEN {% parameter metric_selector %} = 'total_conversions'
-        THEN ${keyword_conversion_events.total_conversions}
-      WHEN {% parameter metric_selector %} = 'conversion_rate'
-        THEN ${keyword_conversion_events.conversion_rate}
-      WHEN {% parameter metric_selector %} = 'click_through_rate'
-        THEN ${click_through_rate}
-      WHEN {% parameter metric_selector %} = 'roas'
-        THEN ${keyword_conversion_events.ROAS}
-      ELSE NULL
-    END ;;
+    drill_fields: [campaign.campaign, cost_per_click, total_cost, total_clicks]
   }
 
 

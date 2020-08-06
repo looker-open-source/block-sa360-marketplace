@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/advertiser.view.lkml"
+
+
 view: advertiser {
-  sql_table_name: `SA360.Advertiser_21700000000010391`
-    ;;
+  extends: [advertiser_config]
+}
+
+###################################################
+
+view: advertiser_core {
+  sql_table_name: `@{SA_360_SCHEMA}.Advertiser_@{ADVERTISER_ID}`;;
 
   dimension: advertiser_composite_key {
     primary_key: yes

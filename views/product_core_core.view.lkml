@@ -1,5 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/product.view.lkml"
+
+
 view: product {
-  sql_table_name: `SA360.ProductAdvertised_21700000000010391`
+  extends: [product_config]
+}
+
+###################################################
+
+view: product_core {
+  sql_table_name: `@{SA_360_SCHEMA}.ProductAdvertised_@{ADVERTISER_ID}`
     ;;
 
   dimension: product_composite_key {

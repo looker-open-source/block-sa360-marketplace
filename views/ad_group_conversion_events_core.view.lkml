@@ -1,7 +1,15 @@
+include: "//@{CONFIG_PROJECT_NAME}/ad_group_conversion_events.view.lkml"
+
+
 view: ad_group_conversion_events {
+  extends: [ad_group_conversion_events_config]
+}
+
+###################################################
+
+view: ad_group_conversion_events_core {
   view_label: "Ad Group Events"
-  sql_table_name: `SA360.AdGroupFloodlightAndDeviceStats_21700000000010391`
-    ;;
+  sql_table_name: `@{SA_360_SCHEMA}.AdGroupFloodlightAndDeviceStats_@{ADVERTISER_ID}`;;
 
   dimension_group: _data {
     type: time
@@ -154,6 +162,7 @@ view: ad_group_conversion_events {
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
     drill_fields: [ad_group.ad_group, total_conversions, cost_per_acquisition, total_actions, total_transactions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   ##### Ad Group Conversion Metrics #####
@@ -186,7 +195,7 @@ view: ad_group_conversion_events {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${ad_group_events.total_clicks},0)  ;;
+    sql: 1.0 * ${total_conversions} / NULLIF(${ad_group_events.total_clicks},0)  ;;
     drill_fields: [ad_group.ad_group, conversion_rate, total_actions, ad_group_events.total_clicks]
   }
 

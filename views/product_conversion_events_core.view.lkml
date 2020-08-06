@@ -1,5 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/product_conversion_events.view.lkml"
+
+
 view: product_conversion_events {
-  sql_table_name: `SA360.ProductAdvertisedFloodlightAndDeviceStats_21700000000010391`
+  extends: [product_conversion_events_config]
+}
+
+###################################################
+
+view: product_conversion_events_core {
+  sql_table_name: `@{SA_360_SCHEMA}.ProductAdvertisedFloodlightAndDeviceStats_@{ADVERTISER_ID}`
     ;;
 
   dimension: advertiser_composite_key {
@@ -159,6 +168,7 @@ view: product_conversion_events {
     type: number
     sql: ${total_actions} + ${total_transactions} ;;
     drill_fields: [campaign.campaign, total_conversions, total_actions, total_transactions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   ##### Product Conversion Metrics #####
@@ -191,7 +201,7 @@ view: product_conversion_events {
     description: "Conversions divided by Clicks"
     type: number
     value_format_name: percent_2
-    sql: 1.0 * ${total_actions} / NULLIF(${product_events.total_clicks},0)  ;;
+    sql: 1.0 * ${total_conversions} / NULLIF(${product_events.total_clicks},0)  ;;
     drill_fields: [campaign.campaign, conversion_rate, total_actions, product_events.total_clicks]
   }
 

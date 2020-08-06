@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/ad_group_events.view.lkml"
+
+
 view: ad_group_events {
-  sql_table_name: `SA360.AdGroupDeviceStats_21700000000010391`
-    ;;
+  extends: [ad_group_events_config]
+}
+
+###################################################
+
+view: ad_group_events_core {
+  sql_table_name: `@{SA_360_SCHEMA}.AdGroupDeviceStats_@{ADVERTISER_ID}`;;
 
   dimension: ad_group_composite_key {
     hidden: yes
@@ -192,13 +200,15 @@ view: ad_group_events {
   measure: total_impressions {
     type: sum
     sql: ${impr} ;;
-    drill_fields: [ad_group.adgroup, total_impressions]
+    drill_fields: [ad_group.ad_group, total_impressions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_clicks {
     type: sum
     sql: ${clicks} ;;
-    drill_fields: [ad_group.adgroup, total_clicks]
+    drill_fields: [ad_group.ad_group, total_clicks, click_through_rate, total_clicks, total_impressions]
+    value_format:"[<1000]0.00;[<1000000]0.00,\" K\";0.00,,\" M\""
   }
 
   measure: total_visits {

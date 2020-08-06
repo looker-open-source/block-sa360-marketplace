@@ -1,6 +1,14 @@
+include: "//@{CONFIG_PROJECT_NAME}/floodlight_activity.view.lkml"
+
+
 view: floodlight_activity {
-  sql_table_name: `SA360.FloodlightActivity_21700000000010391`
-    ;;
+  extends: [floodlight_activity_config]
+}
+
+###################################################
+
+view: floodlight_activity_core {
+  sql_table_name: `@{SA_360_SCHEMA}.FloodlightActivity_@{ADVERTISER_ID}`;;
 
   dimension_group: _data {
     hidden: yes
