@@ -87,7 +87,7 @@ view: campaign_core {
     type: string
     sql: ${TABLE}.campaign ;;
     link: {
-      url: "/dashboards-next/31?Campaign={{ value | encode_uri }}"
+      url: "/dashboards/31?Campaign={{ value | encode_uri }}"
       label: "Campaign Performance Dashboard"
     }
     link: {
