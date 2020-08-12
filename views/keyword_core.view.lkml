@@ -187,7 +187,7 @@ view: keyword_core {
     type: string
     sql: ${TABLE}.keywordText ;;
     link: {
-      url: "/dashboards/24?Keyword={{ value | encode_uri }}"
+      url: "/dashboards/block_sa360::campaign_performance?Keyword={{ value | encode_uri }}"
       label: "Keyword Performance Lookup"
     }
   }
