@@ -1,7 +1,7 @@
 - dashboard: product_analytics
   title: Product Analytics
   layout: newspaper
-  preferred_viewer: dashboards-next
+  preferred_viewer: dashboards
   elements:
   - title: Total Spend
     name: Total Spend
