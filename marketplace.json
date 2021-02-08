@@ -26,6 +26,9 @@
     {
       "name": "block_sa360",
       "connection_constant": "CONNECTION_NAME"
+    },
+    {
+      "name": "p_block_sa360"
     }
   ],
   "auxiliary_projects": [
