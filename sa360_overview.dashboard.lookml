@@ -1,7 +1,7 @@
 - dashboard: sa360_overview
   title: SA360 Overview
   layout: newspaper
-  preferred_viewer: dashboards
+  preferred_viewer: dashboards-next
   elements:
   - title: CTR
     name: CTR
