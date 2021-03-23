@@ -1,7 +1,7 @@
 - dashboard: keyword_performance
   title: Keyword Performance
   layout: newspaper
-  preferred_viewer: dashboards
+  preferred_viewer: dashboards-next
   elements:
   - title: Total Spend Card
     name: Total Spend Card
