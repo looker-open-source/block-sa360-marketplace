@@ -1,7 +1,7 @@
 - dashboard: campaign_performance
   title: Campaign Performance
   layout: newspaper
-  preferred_viewer: dashboards
+  preferred_viewer: dashboards-next
   elements:
   - title: Total Spend
     name: Total Spend
