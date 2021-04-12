@@ -39,8 +39,5 @@ Highest in the hierarchy with the most aggregated data  is
 -- Lowest in the hierarchy and most granular is (4) Keyword Events, containing an Advertiser, Campaign, Ad Group and Keyword dimensional views,  as well as  joined event views for keyword-level event metrics. This explore additionally contains Floodlight Activity data.
 Tangentially, the last explore is Product Events, containing Advertiser and Product dimensional views, as well as joined event views for product-level event metrics.
 
-## What if I find an error? Suggestions for improvements?
-Great! Blocks were designed for continuous improvement through the help of the entire Looker community, and we'd love your input. To log an error or improvement recommendations, simply create a "New Issue" in the corresponding Github repo for this Block. Please be as detailed as possible in your explanation, and we'll address it as quickly as we can.
-
 ## Notes and Other Known Issues
 Be prepared with your advertiser ID prior to installing. Upon installation, you will be prompted to specify the ID.  The value for advertiser ID is your Search Ads 360 Advertiser ID.
