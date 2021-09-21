@@ -25,11 +25,7 @@
 
 
 ## Block Structure
-
-Core project: [block-sa360](https://github.com/llooker/block-sa360) is the read-only project where the block’s base Explores, views, and dashboards are defined. The core project’s initial views and Explores are defined in the core project and extended in the config project, where they can be modified. Then the config project and its files are imported into the core project. Finally, the core project defines the block’s content layer, or the dashboards and Explores that are surfaced in the Looker UI.
-
-
-Config project: [block-sa360-config](https://github.com/llooker/block-sa360-config) is the project that can be modified by LookML developers. This project extends the core project. Its files are also imported into the core project and extended in the core project’s content layer, so that changes made to files in the config project are brought into the core project. You can read more about customizing the block here.
+This block uses refinements for customization. For more information on using refinements to customize marketplace blocks, please see [this link](https://docs.looker.com/data-modeling/marketplace/customize-blocks#marketplace_blocks_that_use_refinements).
 
 Each explore within this block contains a similar structure.
 Highest in the hierarchy with the most aggregated data  is
