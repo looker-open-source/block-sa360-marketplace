@@ -17,27 +17,16 @@
     },
     "ADVERTISER_ID": {
       "label": "Advertiser ID from Search Ads 360"
-    },
-    "CONFIG_PROJECT_NAME": {
-      "label": "Config Project Name"
     }
   },
   "models": [
     {
-      "name": "block_sa360",
+      "name": "block_sa360_v2",
       "connection_constant": "CONNECTION_NAME"
     },
     {
-      "name": "p_block_sa360",
+      "name": "p_block_sa360_v2",
       "connection_constant": "CONNECTION_NAME"
-    }
-  ],
-  "auxiliary_projects": [
-    {
-      "git_uri": "git://github.com/llooker/block-sa360-config.git",
-      "git_ref": "bd38740a5368d7d0cce5585d154c383381006e8c",
-      "label": "Search Ads 360 Config",
-      "constant_name": "CONFIG_PROJECT_NAME"
     }
   ]
 }
