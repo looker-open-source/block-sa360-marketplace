@@ -23,10 +23,6 @@
     {
       "name": "block_sa360_v2",
       "connection_constant": "CONNECTION_NAME"
-    },
-    {
-      "name": "p_block_sa360_v2",
-      "connection_constant": "CONNECTION_NAME"
     }
   ]
 }
