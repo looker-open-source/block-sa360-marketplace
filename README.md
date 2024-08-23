@@ -1,4 +1,5 @@
 # What does this Looker Block do for me?
+**This is not an officially supported Google product.**
 - Quickly understand the state of your search ad campaigns across all engines with the SA360 Overview. Slice metrics like cost per acquisition and click through rate by variables like engine, advertiser, campaign and keyword.
 
 - Go deep on the details of any campaign from the Campaign Performance Dashboard. Understand the trends over time for an individual campaign’s performance based on the metrics that matter to you across all engines driving the campaign. Seamlessly switch between your Goal Metric and compare performance between customizable time periods.
