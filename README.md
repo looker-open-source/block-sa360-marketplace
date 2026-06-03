@@ -1,6 +1,6 @@
 # What does this Looker Block do for me?
 
-**This is not an officially supported Google product.**
+This is not an officially supported Google product. This project is not eligible for the [Google Open Source Software Vulnerability Rewards Program](https://bughunters.google.com/open-source-security).
 
 - Quickly understand the state of your search ad campaigns across all engines with the SA360 Overview. Slice metrics like cost per acquisition and click through rate by variables like engine, advertiser, campaign and keyword.
 
@@ -16,7 +16,6 @@
 
 ## Search Ads 360 Data Structure
 
-
 - Prior to installing the block, you will need to use the BigQuery Data Transfer Service to load your data into BigQuery. The BigQuery Data Transfer Service for Search Ads 360 (formerly known as Doubleclick Search) allows you to automatically schedule and manage recurring load jobs for Search Ads 360 reporting data. More details can be found [here](https://slack-redir.net/link?url=https%3A%2F%2Fcloud.google.com%2Fbigquery-transfer%2Fdocs%2Fsa360-transfer).
 
 - This block was built off of BigQuery Views; virtual tables that expose aggregated data by day. When your Search Ads 360 (SA360) data is exported (in this case, through Transfer Services), the service also provides corresponding ingestion-time partitioned tables, denoted with the prefix *p_*. If you would rather have the block build off the partitioned tables, please change the ingested tables with the prefix *p_* in the LookML. The schema of the tables is nearly identical, but you will need to make addments to the two dimensions: changing *_data* to *_partitiontime* and *_latest* to *_current*, as seen in the code below.
@@ -25,7 +24,6 @@
 
 - Google's documentation on the data included in the export can be found [here](https://cloud.google.com/bigquery-transfer/docs/sa360-transformation).
 - You can also find a cookbook of SQL queries for common questions in Google's documentation.
-
 
 ## Block Structure
 This block uses refinements for customization. For more information on using refinements to customize marketplace blocks, please see [this link](https://docs.looker.com/data-modeling/marketplace/customize-blocks#marketplace_blocks_that_use_refinements).
